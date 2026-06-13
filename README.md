@@ -150,14 +150,73 @@ China's domestic tourism generates hundreds of millions of visits annually. Trav
 ## 🔬 EDA Highlights & Key Findings
 
 
-<div align="center">
 
 <!-- CHART 1: Category Distribution Bar Chart -->
-<img width="1672" height="941" alt="Image" src="https://github.com/user-attachments/assets/c563e947-a52d-4144-bd45-b01b8c36c614" />
+<img width="1672" height="941" alt="Top Categories by Visit Volume" src="https://github.com/user-attachments/assets/c563e947-a52d-4144-bd45-b01b8c36c614" />
 
+### 📊 Category Distribution Analysis
+
+This visualization shows the **top tourism categories by total visit volume** across a dataset of **100,000 visit records**. The chart highlights which destination types attract the highest visitor interest and how total visits are distributed across major tourism segments.
+
+### 🔍 Key Findings
+
+- **Natural Scenery is the leading category**, recording **36,347 visits**, which represents **36.3%** of the total dataset.
+- **Historical Culture ranks second** with **12,607 visits**, contributing **12.6%** of all visits.
+- The **top 3 categories together account for 55.9%** of total visits, showing that visitor demand is highly concentrated in a few major tourism segments.
+- **Theme Park** and **Natural Culture** show almost equal popularity, each contributing around **6.9%** of the total visit volume.
+- **Others account for 17.1%**, indicating that several smaller categories still contribute meaningfully when combined.
+- Categories such as **Historic Architecture, Religious Culture, and Revolutionary Site** have lower but stable visit volumes, suggesting niche interest areas.
+
+### 💼 Business Interpretation
+
+The analysis clearly indicates that **nature-based tourism is the strongest demand driver**. Visitors show a strong preference for scenic and outdoor experiences, making Natural Scenery the most valuable category for tourism planning, marketing campaigns, and resource allocation.
+
+At the same time, cultural and heritage-based categories also show strong potential. Historical Culture, Ancient Towns, Historic Architecture, Religious Culture, and Revolutionary Sites together represent a meaningful share of visitor interest, suggesting opportunities for heritage tourism packages and cultural experience promotion.
+
+### ✅ Strategic Insights
+
+- Promote **Natural Scenery** as the primary attraction category.
+- Create bundled tourism campaigns combining **Natural Scenery + Historical Culture**.
+- Improve visibility for mid-performing categories such as **Theme Park, Natural Culture, and Ancient Town**.
+- Analyze the **Others** segment further to identify hidden high-potential subcategories.
+- Use category distribution as an important feature for future recommendation, forecasting, or visitor behavior prediction models.
+
+----
 <!-- CHART 2: Rating Distribution + Satisfaction Donut -->
-<img width="1672" height="941" alt="Image" src="https://github.com/user-attachments/assets/d5553f49-fdd6-43b6-89e7-3a6203084c87" />
+<img width="1672" height="941" alt="Rating Distribution and Satisfaction Levels" src="https://github.com/user-attachments/assets/d5553f49-fdd6-43b6-89e7-3a6203084c87" />
 
+### ⭐ Rating Distribution & Satisfaction Level Analysis
+
+This visualization presents the overall customer rating pattern and satisfaction segmentation. It combines a rating distribution chart with a satisfaction donut chart to understand how users rated their experience and how strongly those ratings align with recommendation behavior.
+
+### 🔍 Key Findings
+
+- The average rating is **4.43 out of 5**, showing a highly positive customer experience.
+- Ratings are strongly concentrated toward the higher end of the scale, especially around **4.4 to 4.8**.
+- The standard deviation is **0.36**, which indicates low variation in ratings and a consistent customer experience.
+- **49.2% of users are Very Satisfied**, making it the largest satisfaction segment.
+- **39.1% of users are Satisfied**, meaning a combined **88.3% of users** fall into the satisfied or very satisfied group.
+- Only **11.7% of users are Neutral**, suggesting limited dissatisfaction or weak engagement.
+- The Shapiro-Wilk test result of **p < 0.001** suggests the rating distribution is not perfectly normal and is skewed toward positive feedback.
+- Cramér’s V value of **0.83** indicates a strong association between satisfaction level and recommendation intent.
+
+### 💼 Business Interpretation
+
+The results show that customer sentiment is strongly positive. A high average rating, low rating spread, and large satisfied-user percentage suggest that the tourism experience is performing well overall.
+
+The strong relationship between satisfaction and recommendation level means satisfied visitors are highly likely to recommend the destination or service to others. This is important because recommendation intent directly supports word-of-mouth growth, repeat visits, and brand trust.
+
+### ✅ Strategic Insights
+
+- Maintain the quality factors that are driving high satisfaction scores.
+- Use **Very Satisfied** users as potential promoters for reviews, testimonials, and referral campaigns.
+- Convert the **Neutral 11.7% segment** into satisfied users by improving pain points such as service quality, accessibility, pricing, or experience personalization.
+- Monitor rating distribution regularly to detect early signs of customer dissatisfaction.
+- Use satisfaction level as an important feature for recommendation prediction and customer behavior modeling.
+
+### 🧠 Key Takeaway
+
+Customer sentiment is highly positive, with most ratings clustered at the upper end of the scale. The main business opportunity is not only maintaining current satisfaction levels but also converting neutral visitors into satisfied advocates.
 <!-- CHART 3: Season + Province + Gender animated trio -->
 <p align="center">
   <img src="./assets/07-eda-season-province-gender.svg" alt="Season province and gender EDA summary" width="760">
