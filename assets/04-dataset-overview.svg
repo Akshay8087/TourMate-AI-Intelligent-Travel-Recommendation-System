@@ -1,0 +1,63 @@
+<svg width="760" height="110" viewBox="0 0 760 110" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <style>
+      .chip { font-family: Arial,sans-serif; font-size: 11px; font-weight: 600; }
+      .pop-in { animation: popIn 0.5s ease-out both; }
+      .pop-in-2 { animation: popIn 0.5s 0.1s ease-out both; }
+      .pop-in-3 { animation: popIn 0.5s 0.2s ease-out both; }
+      .pop-in-4 { animation: popIn 0.5s 0.3s ease-out both; }
+      .pop-in-5 { animation: popIn 0.5s 0.4s ease-out both; }
+      .pop-in-6 { animation: popIn 0.5s 0.5s ease-out both; }
+      @keyframes popIn { from{opacity:0;transform:scale(0.8)} to{opacity:1;transform:scale(1)} }
+    </style>
+  </defs>
+  <rect width="760" height="110" rx="16" fill="#f8fafc" stroke="#e2e8f0" stroke-width="1.2"/>
+  <!-- Item 1 -->
+  <g class="pop-in">
+    <rect x="12" y="15" width="112" height="80" rx="12" fill="#eff6ff" stroke="#bfdbfe" stroke-width="1"/>
+    <text x="68" y="42" text-anchor="middle" font-size="20">📋</text>
+    <text x="68" y="60" text-anchor="middle" fill="#1d4ed8" font-size="14" font-weight="700" font-family="Georgia,serif">25</text>
+    <text x="68" y="74" text-anchor="middle" fill="#3b82f6" font-size="9.5" font-weight="700" font-family="Arial,sans-serif">COLUMNS</text>
+    <text x="68" y="87" text-anchor="middle" fill="#93c5fd" font-size="8.5" font-family="Arial,sans-serif">Raw Features</text>
+  </g>
+  <!-- Item 2 -->
+  <g class="pop-in-2">
+    <rect x="133" y="15" width="112" height="80" rx="12" fill="#ecfdf5" stroke="#a7f3d0" stroke-width="1"/>
+    <text x="189" y="42" text-anchor="middle" font-size="20">🗓️</text>
+    <text x="189" y="60" text-anchor="middle" fill="#065f46" font-size="11" font-weight="700" font-family="Georgia,serif">2022-25</text>
+    <text x="189" y="74" text-anchor="middle" fill="#10b981" font-size="9.5" font-weight="700" font-family="Arial,sans-serif">DATE RANGE</text>
+    <text x="189" y="87" text-anchor="middle" fill="#6ee7b7" font-size="8.5" font-family="Arial,sans-serif">2.5 Years Data</text>
+  </g>
+  <!-- Item 3 -->
+  <g class="pop-in-3">
+    <rect x="254" y="15" width="112" height="80" rx="12" fill="#fff7ed" stroke="#fed7aa" stroke-width="1"/>
+    <text x="310" y="42" text-anchor="middle" font-size="20">🏷️</text>
+    <text x="310" y="60" text-anchor="middle" fill="#9a3412" font-size="14" font-weight="700" font-family="Georgia,serif">26</text>
+    <text x="310" y="74" text-anchor="middle" fill="#f97316" font-size="9.5" font-weight="700" font-family="Arial,sans-serif">CATEGORIES</text>
+    <text x="310" y="87" text-anchor="middle" fill="#fdba74" font-size="8.5" font-family="Arial,sans-serif">Tourism Types</text>
+  </g>
+  <!-- Item 4 -->
+  <g class="pop-in-4">
+    <rect x="375" y="15" width="112" height="80" rx="12" fill="#fdf4ff" stroke="#e9d5ff" stroke-width="1"/>
+    <text x="431" y="42" text-anchor="middle" font-size="20">🎯</text>
+    <text x="431" y="60" text-anchor="middle" fill="#581c87" font-size="14" font-weight="700" font-family="Georgia,serif">3</text>
+    <text x="431" y="74" text-anchor="middle" fill="#8b5cf6" font-size="9.5" font-weight="700" font-family="Arial,sans-serif">TARGETS</text>
+    <text x="431" y="87" text-anchor="middle" fill="#c4b5fd" font-size="8.5" font-family="Arial,sans-serif">Rating·Rec·Sat</text>
+  </g>
+  <!-- Item 5 -->
+  <g class="pop-in-5">
+    <rect x="496" y="15" width="112" height="80" rx="12" fill="#fff1f2" stroke="#fecdd3" stroke-width="1"/>
+    <text x="552" y="42" text-anchor="middle" font-size="20">📍</text>
+    <text x="552" y="60" text-anchor="middle" fill="#881337" font-size="14" font-weight="700" font-family="Georgia,serif">34</text>
+    <text x="552" y="74" text-anchor="middle" fill="#f43f5e" font-size="9.5" font-weight="700" font-family="Arial,sans-serif">ORIGINS</text>
+    <text x="552" y="87" text-anchor="middle" fill="#fda4af" font-size="8.5" font-family="Arial,sans-serif">Source Provinces</text>
+  </g>
+  <!-- Item 6 -->
+  <g class="pop-in-6">
+    <rect x="617" y="15" width="131" height="80" rx="12" fill="#f0fdf4" stroke="#bbf7d0" stroke-width="1"/>
+    <text x="682" y="42" text-anchor="middle" font-size="20">💾</text>
+    <text x="682" y="60" text-anchor="middle" fill="#14532d" font-size="14" font-weight="700" font-family="Georgia,serif">12 MB</text>
+    <text x="682" y="74" text-anchor="middle" fill="#22c55e" font-size="9.5" font-weight="700" font-family="Arial,sans-serif">MODELS</text>
+    <text x="682" y="87" text-anchor="middle" fill="#86efac" font-size="8.5" font-family="Arial,sans-serif">13 pkl artifacts</text>
+  </g>
+</svg>

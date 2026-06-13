@@ -1,0 +1,76 @@
+<svg width="760" height="240" viewBox="0 0 760 240" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <style>
+      .hist-bar { animation: histGrow 1s ease-out both; transform-origin: bottom; }
+      .h1{animation-delay:0.1s} .h2{animation-delay:0.18s} .h3{animation-delay:0.26s}
+      .h4{animation-delay:0.34s} .h5{animation-delay:0.42s} .h6{animation-delay:0.50s}
+      .h7{animation-delay:0.58s} .h8{animation-delay:0.66s} .h9{animation-delay:0.74s}
+      @keyframes histGrow { from{transform:scaleY(0)} to{transform:scaleY(1)} }
+      .donut-seg1 { stroke-dasharray: 0 157; animation: donut1 1.5s 0.5s ease-out forwards; }
+      .donut-seg2 { stroke-dasharray: 0 157; animation: donut2 1.5s 0.7s ease-out forwards; }
+      .donut-seg3 { stroke-dasharray: 0 157; animation: donut3 1.5s 0.9s ease-out forwards; }
+      @keyframes donut1 { to{stroke-dasharray: 77 157} }
+      @keyframes donut2 { to{stroke-dasharray: 61 157} }
+      @keyframes donut3 { to{stroke-dasharray: 30 157} }
+    </style>
+  </defs>
+  <rect width="760" height="240" rx="16" fill="#f8fafc" stroke="#e2e8f0" stroke-width="1.2"/>
+  <!-- LEFT: Rating Histogram -->
+  <text x="190" y="25" text-anchor="middle" fill="#0f172a" font-size="13" font-weight="700" font-family="Georgia,serif">⭐ Rating Distribution</text>
+  <text x="190" y="40" text-anchor="middle" fill="#64748b" font-size="9.5" font-family="Arial,sans-serif">μ=4.4319  σ=0.3607  Shapiro-Wilk p&lt;0.001</text>
+  <!-- Histogram bars (9 bins from ~3.0 to 5.0) -->
+  <!-- Heights proportional to realistic left-skewed distribution -->
+  <g class="hist-bar h1"><rect x="25"  y="185" width="36" height="8"   rx="3" fill="#bfdbfe"/></g>
+  <g class="hist-bar h2"><rect x="65"  y="177" width="36" height="16"  rx="3" fill="#93c5fd"/></g>
+  <g class="hist-bar h3"><rect x="105" y="167" width="36" height="26"  rx="3" fill="#60a5fa"/></g>
+  <g class="hist-bar h4"><rect x="145" y="148" width="36" height="45"  rx="3" fill="#3b82f6"/></g>
+  <g class="hist-bar h5"><rect x="185" y="118" width="36" height="75"  rx="3" fill="#2563eb"/></g>
+  <g class="hist-bar h6"><rect x="225" y="88"  width="36" height="105" rx="3" fill="#1d4ed8"/></g>
+  <g class="hist-bar h7"><rect x="265" y="60"  width="36" height="133" rx="3" fill="#0ea5e9"/></g>
+  <g class="hist-bar h8"><rect x="305" y="95"  width="36" height="98"  rx="3" fill="#0284c7"/></g>
+  <g class="hist-bar h9"><rect x="345" y="150" width="36" height="43"  rx="3" fill="#0369a1"/></g>
+  <!-- X-axis -->
+  <line x1="20" y1="193" x2="390" y2="193" stroke="#cbd5e1" stroke-width="1"/>
+  <text x="43"  y="206" text-anchor="middle" fill="#94a3b8" font-size="9" font-family="Arial,sans-serif">3.0</text>
+  <text x="103" y="206" text-anchor="middle" fill="#94a3b8" font-size="9" font-family="Arial,sans-serif">3.5</text>
+  <text x="163" y="206" text-anchor="middle" fill="#94a3b8" font-size="9" font-family="Arial,sans-serif">4.0</text>
+  <text x="223" y="206" text-anchor="middle" fill="#94a3b8" font-size="9" font-family="Arial,sans-serif">4.2</text>
+  <text x="283" y="206" text-anchor="middle" fill="#94a3b8" font-size="9" font-family="Arial,sans-serif">4.4</text>
+  <text x="343" y="206" text-anchor="middle" fill="#94a3b8" font-size="9" font-family="Arial,sans-serif">4.8</text>
+  <text x="383" y="206" text-anchor="middle" fill="#94a3b8" font-size="9" font-family="Arial,sans-serif">5.0</text>
+  <!-- Mean line -->
+  <line x1="282" y1="55" x2="282" y2="193" stroke="#d4a373" stroke-width="1.5" stroke-dasharray="4,3"/>
+  <text x="284" y="72" fill="#d4a373" font-size="9" font-weight="700" font-family="Arial,sans-serif">Mean=4.43</text>
+  <!-- Y-axis label -->
+  <text x="190" y="225" text-anchor="middle" fill="#94a3b8" font-size="9" font-family="Arial,sans-serif">Rating (1–5 scale)</text>
+  <!-- Divider -->
+  <line x1="400" y1="15" x2="400" y2="225" stroke="#e2e8f0" stroke-width="1" stroke-dasharray="4,3"/>
+
+  <!-- RIGHT: Satisfaction Donut Chart -->
+  <text x="580" y="25" text-anchor="middle" fill="#0f172a" font-size="13" font-weight="700" font-family="Georgia,serif">😊 Satisfaction Levels</text>
+  <text x="580" y="40" text-anchor="middle" fill="#64748b" font-size="9.5" font-family="Arial,sans-serif">Cramér's V = 0.83 with Recommendation Level</text>
+  <!-- Donut rings (cx=580 cy=130 r=50) -->
+  <circle cx="580" cy="130" r="50" fill="none" stroke="#e2e8f0" stroke-width="18"/>
+  <!-- Very Satisfied: 49.2% = 77/157 of circumference -->
+  <circle cx="580" cy="130" r="50" fill="none" stroke="#52c27a" stroke-width="18"
+          stroke-dasharray="0 157" class="donut-seg1"
+          transform="rotate(-90 580 130)"/>
+  <!-- Satisfied: 39% = 61/157 -->
+  <circle cx="580" cy="130" r="50" fill="none" stroke="#0ea5e9" stroke-width="18"
+          stroke-dasharray="0 157" class="donut-seg2"
+          transform="rotate(86.4 580 130)"/>
+  <!-- Neutral: 11.8% = 19/157 -->
+  <circle cx="580" cy="130" r="50" fill="none" stroke="#d4a373" stroke-width="18"
+          stroke-dasharray="0 157" class="donut-seg3"
+          transform="rotate(225 580 130)"/>
+  <!-- Center text -->
+  <text x="580" y="124" text-anchor="middle" fill="#0f172a" font-size="16" font-weight="700" font-family="Georgia,serif">49.2%</text>
+  <text x="580" y="140" text-anchor="middle" fill="#52c27a" font-size="9.5" font-weight="700" font-family="Arial,sans-serif">Very Satisfied</text>
+  <!-- Legend -->
+  <rect x="430" y="195" width="10" height="10" rx="2" fill="#52c27a"/>
+  <text x="445" y="204" fill="#0f172a" font-size="9.5" font-family="Arial,sans-serif">Very Satisfied 49.2%</text>
+  <rect x="545" y="195" width="10" height="10" rx="2" fill="#0ea5e9"/>
+  <text x="560" y="204" fill="#0f172a" font-size="9.5" font-family="Arial,sans-serif">Satisfied 39.1%</text>
+  <rect x="650" y="195" width="10" height="10" rx="2" fill="#d4a373"/>
+  <text x="665" y="204" fill="#0f172a" font-size="9.5" font-family="Arial,sans-serif">Neutral 11.7%</text>
+</svg>

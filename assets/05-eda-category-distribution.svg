@@ -1,0 +1,68 @@
+<svg width="760" height="300" viewBox="0 0 760 300" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="b1" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" style="stop-color:#0ea5e9"/><stop offset="100%" style="stop-color:#38bdf8"/></linearGradient>
+    <linearGradient id="b2" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" style="stop-color:#52c27a"/><stop offset="100%" style="stop-color:#86efac"/></linearGradient>
+    <linearGradient id="b3" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" style="stop-color:#d4a373"/><stop offset="100%" style="stop-color:#fbbf24"/></linearGradient>
+    <linearGradient id="b4" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" style="stop-color:#8b5cf6"/><stop offset="100%" style="stop-color:#c4b5fd"/></linearGradient>
+    <linearGradient id="b5" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" style="stop-color:#f97316"/><stop offset="100%" style="stop-color:#fdba74"/></linearGradient>
+    <linearGradient id="b6" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" style="stop-color:#ec4899"/><stop offset="100%" style="stop-color:#f9a8d4"/></linearGradient>
+    <linearGradient id="b7" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" style="stop-color:#14b8a6"/><stop offset="100%" style="stop-color:#5eead4"/></linearGradient>
+    <linearGradient id="b8" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" style="stop-color:#ef4444"/><stop offset="100%" style="stop-color:#fca5a5"/></linearGradient>
+    <style>
+      .bar1 { animation: bar1grow 1.5s 0.1s ease-out both; transform-origin: left; }
+      .bar2 { animation: bar2grow 1.5s 0.2s ease-out both; transform-origin: left; }
+      .bar3 { animation: bar3grow 1.5s 0.3s ease-out both; transform-origin: left; }
+      .bar4 { animation: bar4grow 1.5s 0.4s ease-out both; transform-origin: left; }
+      .bar5 { animation: bar5grow 1.5s 0.5s ease-out both; transform-origin: left; }
+      .bar6 { animation: bar6grow 1.5s 0.6s ease-out both; transform-origin: left; }
+      .bar7 { animation: bar7grow 1.5s 0.7s ease-out both; transform-origin: left; }
+      .bar8 { animation: bar8grow 1.5s 0.8s ease-out both; transform-origin: left; }
+      @keyframes bar1grow { from{transform:scaleX(0)} to{transform:scaleX(1)} }
+      @keyframes bar2grow { from{transform:scaleX(0)} to{transform:scaleX(1)} }
+      @keyframes bar3grow { from{transform:scaleX(0)} to{transform:scaleX(1)} }
+      @keyframes bar4grow { from{transform:scaleX(0)} to{transform:scaleX(1)} }
+      @keyframes bar5grow { from{transform:scaleX(0)} to{transform:scaleX(1)} }
+      @keyframes bar6grow { from{transform:scaleX(0)} to{transform:scaleX(1)} }
+      @keyframes bar7grow { from{transform:scaleX(0)} to{transform:scaleX(1)} }
+      @keyframes bar8grow { from{transform:scaleX(0)} to{transform:scaleX(1)} }
+    </style>
+  </defs>
+  <rect width="760" height="300" rx="16" fill="#f8fafc" stroke="#e2e8f0" stroke-width="1.2"/>
+  <text x="380" y="28" text-anchor="middle" fill="#0f172a" font-size="14" font-weight="700" font-family="Georgia,serif">📊 Top Categories by Visit Volume (100K Records)</text>
+  <!-- Y-axis labels -->
+  <text x="155" y="62" text-anchor="end" fill="#64748b" font-size="10.5" font-family="Arial,sans-serif">Natural Scenery</text>
+  <text x="155" y="96" text-anchor="end" fill="#64748b" font-size="10.5" font-family="Arial,sans-serif">Historical Culture</text>
+  <text x="155" y="130" text-anchor="end" fill="#64748b" font-size="10.5" font-family="Arial,sans-serif">Theme Park</text>
+  <text x="155" y="164" text-anchor="end" fill="#64748b" font-size="10.5" font-family="Arial,sans-serif">Natural Culture</text>
+  <text x="155" y="198" text-anchor="end" fill="#64748b" font-size="10.5" font-family="Arial,sans-serif">Ancient Town</text>
+  <text x="155" y="232" text-anchor="end" fill="#64748b" font-size="10.5" font-family="Arial,sans-serif">Hist. Architecture</text>
+  <text x="155" y="266" text-anchor="end" fill="#64748b" font-size="10.5" font-family="Arial,sans-serif">Religious Culture</text>
+  <text x="155" y="284" text-anchor="end" fill="#64748b" font-size="10.5" font-family="Arial,sans-serif">Revolutionary Site</text>
+  <!-- Background track bars -->
+  <rect x="162" y="50" width="560" height="22" rx="6" fill="#f1f5f9"/>
+  <rect x="162" y="84" width="560" height="22" rx="6" fill="#f1f5f9"/>
+  <rect x="162" y="118" width="560" height="22" rx="6" fill="#f1f5f9"/>
+  <rect x="162" y="152" width="560" height="22" rx="6" fill="#f1f5f9"/>
+  <rect x="162" y="186" width="560" height="22" rx="6" fill="#f1f5f9"/>
+  <rect x="162" y="220" width="560" height="22" rx="6" fill="#f1f5f9"/>
+  <rect x="162" y="254" width="560" height="22" rx="6" fill="#f1f5f9"/>
+  <rect x="162" y="272" width="560" height="22" rx="6" fill="#f1f5f9"/>
+  <!-- Animated bars — proportional to 36347 max -->
+  <rect x="162" y="50" width="560" height="22" rx="6" fill="url(#b1)" class="bar1"/>
+  <rect x="162" y="84" width="194" height="22" rx="6" fill="url(#b2)" class="bar2"/>
+  <rect x="162" y="118" width="107" height="22" rx="6" fill="url(#b3)" class="bar3"/>
+  <rect x="162" y="152" width="107" height="22" rx="6" fill="url(#b4)" class="bar4"/>
+  <rect x="162" y="186" width="90"  height="22" rx="6" fill="url(#b5)" class="bar5"/>
+  <rect x="162" y="220" width="74"  height="22" rx="6" fill="url(#b6)" class="bar6"/>
+  <rect x="162" y="254" width="72"  height="22" rx="6" fill="url(#b7)" class="bar7"/>
+  <rect x="162" y="272" width="72"  height="22" rx="6" fill="url(#b8)" class="bar8"/>
+  <!-- Value labels -->
+  <text x="728" y="66" fill="#0f172a" font-size="10" font-weight="700" font-family="Arial,sans-serif">36,347 (36.3%)</text>
+  <text x="362" y="100" fill="#065f46" font-size="10" font-weight="700" font-family="Arial,sans-serif">12,607 (12.6%)</text>
+  <text x="275" y="134" fill="#92400e" font-size="10" font-weight="700" font-family="Arial,sans-serif">6,945 (6.9%)</text>
+  <text x="275" y="168" fill="#581c87" font-size="10" font-weight="700" font-family="Arial,sans-serif">6,922 (6.9%)</text>
+  <text x="258" y="202" fill="#9a3412" font-size="10" font-weight="700" font-family="Arial,sans-serif">5,851 (5.9%)</text>
+  <text x="242" y="236" fill="#831843" font-size="10" font-weight="700" font-family="Arial,sans-serif">4,832 (4.8%)</text>
+  <text x="240" y="270" fill="#134e4a" font-size="10" font-weight="700" font-family="Arial,sans-serif">4,702 (4.7%)</text>
+  <text x="240" y="288" fill="#7f1d1d" font-size="10" font-weight="700" font-family="Arial,sans-serif">4,676 (4.7%)</text>
+</svg>

@@ -1,0 +1,55 @@
+<svg width="760" height="130" viewBox="0 0 760 130" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <style>
+      .nb-card { animation: nbIn 0.5s ease-out both; }
+      .nb1{animation-delay:0.1s} .nb2{animation-delay:0.2s} .nb3{animation-delay:0.3s} .nb4{animation-delay:0.4s}
+      @keyframes nbIn { from{opacity:0;transform:translateY(12px)} to{opacity:1;transform:translateY(0)} }
+    </style>
+    <linearGradient id="nb1g" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:#0ea5e9"/><stop offset="100%" style="stop-color:#0284c7"/></linearGradient>
+    <linearGradient id="nb2g" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:#52c27a"/><stop offset="100%" style="stop-color:#16a34a"/></linearGradient>
+    <linearGradient id="nb3g" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:#d4a373"/><stop offset="100%" style="stop-color:#a16207"/></linearGradient>
+    <linearGradient id="nb4g" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:#8b5cf6"/><stop offset="100%" style="stop-color:#6d28d9"/></linearGradient>
+    <filter id="nbShadow"><feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#0ea5e9" flood-opacity="0.12"/></filter>
+  </defs>
+  <rect width="760" height="130" rx="16" fill="#f8fafc" stroke="#e2e8f0" stroke-width="1.2"/>
+
+  <g class="nb-card nb1">
+    <rect x="12" y="12" width="176" height="106" rx="12" fill="url(#nb1g)" filter="url(#nbShadow)"/>
+    <text x="100" y="38" text-anchor="middle" fill="white" font-size="16">📊</text>
+    <text x="100" y="56" text-anchor="middle" fill="white" font-size="9.5" font-weight="700" font-family="Arial,sans-serif">01 — GOD-LEVEL EDA</text>
+    <text x="100" y="70" text-anchor="middle" fill="rgba(255,255,255,0.85)" font-size="8.5" font-family="Arial,sans-serif">37 cells · 59K chars</text>
+    <text x="100" y="84" text-anchor="middle" fill="rgba(255,255,255,0.8)" font-size="8" font-family="Arial,sans-serif">13 chart groups</text>
+    <text x="100" y="98" text-anchor="middle" fill="rgba(255,255,255,0.8)" font-size="8" font-family="Arial,sans-serif">15 findings + tests</text>
+    <text x="100" y="112" text-anchor="middle" fill="rgba(255,255,255,0.7)" font-size="7.5" font-family="Arial,sans-serif">~5 min runtime</text>
+  </g>
+
+  <g class="nb-card nb2">
+    <rect x="198" y="12" width="176" height="106" rx="12" fill="url(#nb2g)" filter="url(#nbShadow)"/>
+    <text x="286" y="38" text-anchor="middle" fill="white" font-size="16">🤖</text>
+    <text x="286" y="56" text-anchor="middle" fill="white" font-size="9.5" font-weight="700" font-family="Arial,sans-serif">02 — MODELING</text>
+    <text x="286" y="70" text-anchor="middle" fill="rgba(255,255,255,0.85)" font-size="8.5" font-family="Arial,sans-serif">30 cells · 40K chars</text>
+    <text x="286" y="84" text-anchor="middle" fill="rgba(255,255,255,0.8)" font-size="8" font-family="Arial,sans-serif">7 rec approaches</text>
+    <text x="286" y="98" text-anchor="middle" fill="rgba(255,255,255,0.8)" font-size="8" font-family="Arial,sans-serif">6 classifiers + 5 regs</text>
+    <text x="286" y="112" text-anchor="middle" fill="rgba(255,255,255,0.7)" font-size="7.5" font-family="Arial,sans-serif">~8 min runtime</text>
+  </g>
+
+  <g class="nb-card nb3">
+    <rect x="384" y="12" width="176" height="106" rx="12" fill="url(#nb3g)" filter="url(#nbShadow)"/>
+    <text x="472" y="38" text-anchor="middle" fill="white" font-size="16">🔧</text>
+    <text x="472" y="56" text-anchor="middle" fill="white" font-size="9.5" font-weight="700" font-family="Arial,sans-serif">03 — TUNING</text>
+    <text x="472" y="70" text-anchor="middle" fill="rgba(255,255,255,0.85)" font-size="8.5" font-family="Arial,sans-serif">25 cells · 41K chars</text>
+    <text x="472" y="84" text-anchor="middle" fill="rgba(255,255,255,0.8)" font-size="8" font-family="Arial,sans-serif">150+125 CV fits</text>
+    <text x="472" y="98" text-anchor="middle" fill="rgba(255,255,255,0.8)" font-size="8" font-family="Arial,sans-serif">7 weight configs</text>
+    <text x="472" y="112" text-anchor="middle" fill="rgba(255,255,255,0.7)" font-size="7.5" font-family="Arial,sans-serif">~15 min runtime</text>
+  </g>
+
+  <g class="nb-card nb4">
+    <rect x="570" y="12" width="178" height="106" rx="12" fill="url(#nb4g)" filter="url(#nbShadow)"/>
+    <text x="659" y="38" text-anchor="middle" fill="white" font-size="16">📤</text>
+    <text x="659" y="56" text-anchor="middle" fill="white" font-size="9.5" font-weight="700" font-family="Arial,sans-serif">04 — EVALUATION</text>
+    <text x="659" y="70" text-anchor="middle" fill="rgba(255,255,255,0.85)" font-size="8.5" font-family="Arial,sans-serif">26 cells · 49K chars</text>
+    <text x="659" y="84" text-anchor="middle" fill="rgba(255,255,255,0.8)" font-size="8" font-family="Arial,sans-serif">8 use cases + ROC</text>
+    <text x="659" y="98" text-anchor="middle" fill="rgba(255,255,255,0.8)" font-size="8" font-family="Arial,sans-serif">48-query benchmark</text>
+    <text x="659" y="112" text-anchor="middle" fill="rgba(255,255,255,0.7)" font-size="7.5" font-family="Arial,sans-serif">~5 min runtime</text>
+  </g>
+</svg>

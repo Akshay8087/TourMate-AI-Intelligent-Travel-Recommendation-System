@@ -1,0 +1,71 @@
+<svg width="760" height="200" viewBox="0 0 760 200" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <style>
+      .season-bar { animation: sGrow 1.2s ease-out both; transform-origin: bottom; }
+      .s1{animation-delay:0.1s} .s2{animation-delay:0.25s} .s3{animation-delay:0.4s} .s4{animation-delay:0.55s}
+      @keyframes sGrow { from{transform:scaleY(0)} to{transform:scaleY(1)} }
+      .spin-gender { animation: spinIn 1.5s ease-out both; transform-origin: center; }
+      @keyframes spinIn { from{stroke-dasharray:0 251;opacity:0} to{opacity:1} }
+      .gd1 { animation: gd1Grow 1.8s 0.3s ease-out forwards; }
+      .gd2 { animation: gd2Grow 1.8s 0.5s ease-out forwards; }
+      @keyframes gd1Grow { to{stroke-dasharray:125 251} }
+      @keyframes gd2Grow { to{stroke-dasharray:126 251} }
+    </style>
+  </defs>
+  <rect width="760" height="200" rx="16" fill="#f8fafc" stroke="#e2e8f0" stroke-width="1.2"/>
+
+  <!-- SEASON CHART -->
+  <text x="140" y="22" text-anchor="middle" fill="#0f172a" font-size="12" font-weight="700" font-family="Georgia,serif">🌸 Season Demand</text>
+  <!-- Bars -->
+  <g class="season-bar s1"><rect x="25"  y="100" width="55" height="63" rx="6" fill="#52c27a"/></g>
+  <g class="season-bar s2"><rect x="95"  y="60"  width="55" height="103" rx="6" fill="#f97316"/></g>
+  <g class="season-bar s3"><rect x="165" y="75"  width="55" height="88"  rx="6" fill="#d4a373"/></g>
+  <g class="season-bar s4"><rect x="235" y="115" width="55" height="48"  rx="6" fill="#0ea5e9"/></g>
+  <line x1="18" y1="163" x2="298" y2="163" stroke="#e2e8f0" stroke-width="1"/>
+  <text x="52"  y="178" text-anchor="middle" fill="#64748b" font-size="10" font-family="Arial,sans-serif">Spring</text>
+  <text x="122" y="178" text-anchor="middle" fill="#64748b" font-size="10" font-family="Arial,sans-serif">Summer</text>
+  <text x="192" y="178" text-anchor="middle" fill="#64748b" font-size="10" font-family="Arial,sans-serif">Autumn</text>
+  <text x="262" y="178" text-anchor="middle" fill="#64748b" font-size="10" font-family="Arial,sans-serif">Winter</text>
+  <text x="52"  y="96"  text-anchor="middle" fill="white" font-size="9" font-weight="700" font-family="Arial,sans-serif">22.7%</text>
+  <text x="122" y="55"  text-anchor="middle" fill="#9a3412" font-size="9" font-weight="700" font-family="Arial,sans-serif">30.2%</text>
+  <text x="192" y="70"  text-anchor="middle" fill="#92400e" font-size="9" font-weight="700" font-family="Arial,sans-serif">27.1%</text>
+  <text x="262" y="110" text-anchor="middle" fill="white" font-size="9" font-weight="700" font-family="Arial,sans-serif">20.0%</text>
+
+  <!-- PROVINCE TOP 5 -->
+  <line x1="308" y1="10" x2="308" y2="190" stroke="#e2e8f0" stroke-width="1" stroke-dasharray="3,3"/>
+  <text x="490" y="22" text-anchor="middle" fill="#0f172a" font-size="12" font-weight="700" font-family="Georgia,serif">🏙️ Top 5 Destination Provinces</text>
+  <rect x="320" y="40"  width="310" height="16" rx="5" fill="#e0f2fe"/>
+  <rect x="320" y="40"  width="186" height="16" rx="5" fill="#0ea5e9" class="season-bar s1"/>
+  <text x="316" y="52" text-anchor="end" fill="#64748b" font-size="9.5" font-family="Arial,sans-serif">Zhejiang</text>
+  <text x="510" y="52" fill="#0284c7" font-size="9" font-weight="700" font-family="Arial,sans-serif">4,767</text>
+  <rect x="320" y="64"  width="310" height="16" rx="5" fill="#e0f2fe"/>
+  <rect x="320" y="64"  width="185" height="16" rx="5" fill="#38bdf8" class="season-bar s2"/>
+  <text x="316" y="76" text-anchor="end" fill="#64748b" font-size="9.5" font-family="Arial,sans-serif">Hunan</text>
+  <text x="509" y="76" fill="#0284c7" font-size="9" font-weight="700" font-family="Arial,sans-serif">4,735</text>
+  <rect x="320" y="88"  width="310" height="16" rx="5" fill="#e0f2fe"/>
+  <rect x="320" y="88"  width="183" height="16" rx="5" fill="#52c27a" class="season-bar s3"/>
+  <text x="316" y="100" text-anchor="end" fill="#64748b" font-size="9.5" font-family="Arial,sans-serif">Guangdong</text>
+  <text x="507" y="100" fill="#065f46" font-size="9" font-weight="700" font-family="Arial,sans-serif">4,696</text>
+  <rect x="320" y="112" width="310" height="16" rx="5" fill="#e0f2fe"/>
+  <rect x="320" y="112" width="183" height="16" rx="5" fill="#8b5cf6" class="season-bar s4"/>
+  <text x="316" y="124" text-anchor="end" fill="#64748b" font-size="9.5" font-family="Arial,sans-serif">Shanghai</text>
+  <text x="507" y="124" fill="#581c87" font-size="9" font-weight="700" font-family="Arial,sans-serif">4,693</text>
+  <rect x="320" y="136" width="310" height="16" rx="5" fill="#e0f2fe"/>
+  <rect x="320" y="136" width="182" height="16" rx="5" fill="#f97316" class="season-bar s4"/>
+  <text x="316" y="148" text-anchor="end" fill="#64748b" font-size="9.5" font-family="Arial,sans-serif">Jilin</text>
+  <text x="506" y="148" fill="#9a3412" font-size="9" font-weight="700" font-family="Arial,sans-serif">4,664</text>
+
+  <!-- GENDER RING -->
+  <line x1="636" y1="10" x2="636" y2="190" stroke="#e2e8f0" stroke-width="1" stroke-dasharray="3,3"/>
+  <text x="698" y="22" text-anchor="middle" fill="#0f172a" font-size="12" font-weight="700" font-family="Georgia,serif">🚻 Gender</text>
+  <circle cx="698" cy="105" r="40" fill="none" stroke="#f1f5f9" stroke-width="14"/>
+  <circle cx="698" cy="105" r="40" fill="none" stroke="#0ea5e9" stroke-width="14"
+          stroke-dasharray="0 251" class="gd1"
+          transform="rotate(-90 698 105)"/>
+  <circle cx="698" cy="105" r="40" fill="none" stroke="#f472b6" stroke-width="14"
+          stroke-dasharray="0 251" class="gd2"
+          transform="rotate(90.36 698 105)"/>
+  <text x="698" y="100" text-anchor="middle" fill="#0ea5e9" font-size="11" font-weight="700" font-family="Arial,sans-serif">♂ 49.8</text>
+  <text x="698" y="116" text-anchor="middle" fill="#f472b6" font-size="11" font-weight="700" font-family="Arial,sans-serif">♀ 50.2</text>
+  <text x="698" y="162" text-anchor="middle" fill="#94a3b8" font-size="9" font-family="Arial,sans-serif">% of visitors</text>
+</svg>

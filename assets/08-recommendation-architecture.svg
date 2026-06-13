@@ -1,0 +1,130 @@
+<svg width="760" height="380" viewBox="0 0 760 380" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="archBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#f0f9ff"/><stop offset="100%" style="stop-color:#ecfdf5"/>
+    </linearGradient>
+    <linearGradient id="inputGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#0ea5e9"/><stop offset="100%" style="stop-color:#0284c7"/>
+    </linearGradient>
+    <linearGradient id="hybridBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#1d4ed8"/><stop offset="100%" style="stop-color:#0ea5e9"/>
+    </linearGradient>
+    <linearGradient id="outputGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#52c27a"/><stop offset="100%" style="stop-color:#16a34a"/>
+    </linearGradient>
+    <linearGradient id="geminiGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#8b5cf6"/><stop offset="100%" style="stop-color:#6d28d9"/>
+    </linearGradient>
+    <marker id="arrow" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#94a3b8"/>
+    </marker>
+    <style>
+      .arch-box { animation: archFadeIn 0.6s ease-out both; }
+      .ab1{animation-delay:0.1s} .ab2{animation-delay:0.3s} .ab3{animation-delay:0.5s}
+      .ab4{animation-delay:0.7s} .ab5{animation-delay:0.9s} .ab6{animation-delay:1.1s}
+      .ab7{animation-delay:1.3s}
+      @keyframes archFadeIn { from{opacity:0;transform:translateY(10px)} to{opacity:1;transform:translateY(0)} }
+      .weight-fill { animation: weightGrow 1.5s ease-out both; transform-origin: left; }
+      .wf1{animation-delay:1.0s} .wf2{animation-delay:1.15s} .wf3{animation-delay:1.30s}
+      .wf4{animation-delay:1.45s} .wf5{animation-delay:1.60s} .wf6{animation-delay:1.75s}
+      @keyframes weightGrow { from{transform:scaleX(0)} to{transform:scaleX(1)} }
+      .data-flow { animation: flowPulse 2s 1.5s infinite; }
+      @keyframes flowPulse { 0%,100%{opacity:0.4} 50%{opacity:1} }
+    </style>
+    <filter id="archShadow">
+      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#0ea5e9" flood-opacity="0.15"/>
+    </filter>
+  </defs>
+  <rect width="760" height="380" rx="16" fill="url(#archBg)" stroke="#e2e8f0" stroke-width="1.2"/>
+  <text x="380" y="24" text-anchor="middle" fill="#0f172a" font-size="14" font-weight="700" font-family="Georgia,serif">🏗️ TourMate AI — Hybrid Recommendation Architecture</text>
+
+  <!-- USER INPUT BOX -->
+  <g class="arch-box ab1">
+    <rect x="270" y="35" width="220" height="52" rx="12" fill="url(#inputGrad)" filter="url(#archShadow)"/>
+    <text x="380" y="57" text-anchor="middle" fill="white" font-size="11" font-weight="700" font-family="Arial,sans-serif">👤 USER QUERY INPUT</text>
+    <text x="380" y="73" text-anchor="middle" fill="rgba(255,255,255,0.85)" font-size="9.5" font-family="Arial,sans-serif">category · province · season · budget · rating · n</text>
+  </g>
+
+  <!-- Arrow down -->
+  <line x1="380" y1="87" x2="380" y2="110" stroke="#94a3b8" stroke-width="1.5" marker-end="url(#arrow)" class="data-flow"/>
+
+  <!-- SIX SIGNALS ROW -->
+  <g class="arch-box ab2">
+    <rect x="10" y="112" width="105" height="68" rx="10" fill="white" stroke="#bae6fd" stroke-width="1.5" filter="url(#archShadow)"/>
+    <text x="62" y="132" text-anchor="middle" fill="#0284c7" font-size="11" font-family="Arial,sans-serif">🔗</text>
+    <text x="62" y="148" text-anchor="middle" fill="#0f172a" font-size="9.5" font-weight="700" font-family="Arial,sans-serif">TF-IDF</text>
+    <text x="62" y="162" text-anchor="middle" fill="#64748b" font-size="8.5" font-family="Arial,sans-serif">Content Sim</text>
+    <text x="62" y="175" text-anchor="middle" fill="#0ea5e9" font-size="10" font-weight="700" font-family="Arial,sans-serif">30%</text>
+  </g>
+  <g class="arch-box ab2">
+    <rect x="126" y="112" width="105" height="68" rx="10" fill="white" stroke="#a7f3d0" stroke-width="1.5" filter="url(#archShadow)"/>
+    <text x="178" y="132" text-anchor="middle" fill="#16a34a" font-size="11" font-family="Arial,sans-serif">📊</text>
+    <text x="178" y="148" text-anchor="middle" fill="#0f172a" font-size="9.5" font-weight="700" font-family="Arial,sans-serif">Popularity</text>
+    <text x="178" y="162" text-anchor="middle" fill="#64748b" font-size="8.5" font-family="Arial,sans-serif">Freq×Rating</text>
+    <text x="178" y="175" text-anchor="middle" fill="#52c27a" font-size="10" font-weight="700" font-family="Arial,sans-serif">25%</text>
+  </g>
+  <g class="arch-box ab3">
+    <rect x="242" y="112" width="105" height="68" rx="10" fill="white" stroke="#fed7aa" stroke-width="1.5" filter="url(#archShadow)"/>
+    <text x="294" y="132" text-anchor="middle" fill="#c2410c" font-size="11" font-family="Arial,sans-serif">⭐</text>
+    <text x="294" y="148" text-anchor="middle" fill="#0f172a" font-size="9.5" font-weight="700" font-family="Arial,sans-serif">Rating</text>
+    <text x="294" y="162" text-anchor="middle" fill="#64748b" font-size="8.5" font-family="Arial,sans-serif">Normalized</text>
+    <text x="294" y="175" text-anchor="middle" fill="#f97316" font-size="10" font-weight="700" font-family="Arial,sans-serif">20%</text>
+  </g>
+  <g class="arch-box ab4">
+    <rect x="358" y="112" width="105" height="68" rx="10" fill="white" stroke="#e9d5ff" stroke-width="1.5" filter="url(#archShadow)"/>
+    <text x="410" y="132" text-anchor="middle" fill="#6d28d9" font-size="11" font-family="Arial,sans-serif">💰</text>
+    <text x="410" y="148" text-anchor="middle" fill="#0f172a" font-size="9.5" font-weight="700" font-family="Arial,sans-serif">Budget</text>
+    <text x="410" y="162" text-anchor="middle" fill="#64748b" font-size="8.5" font-family="Arial,sans-serif">Compatibility</text>
+    <text x="410" y="175" text-anchor="middle" fill="#8b5cf6" font-size="10" font-weight="700" font-family="Arial,sans-serif">10%</text>
+  </g>
+  <g class="arch-box ab5">
+    <rect x="474" y="112" width="105" height="68" rx="10" fill="white" stroke="#fde68a" stroke-width="1.5" filter="url(#archShadow)"/>
+    <text x="526" y="132" text-anchor="middle" fill="#92400e" font-size="11" font-family="Arial,sans-serif">🌸</text>
+    <text x="526" y="148" text-anchor="middle" fill="#0f172a" font-size="9.5" font-weight="700" font-family="Arial,sans-serif">Season</text>
+    <text x="526" y="162" text-anchor="middle" fill="#64748b" font-size="8.5" font-family="Arial,sans-serif">Match Bonus</text>
+    <text x="526" y="175" text-anchor="middle" fill="#d97706" font-size="10" font-weight="700" font-family="Arial,sans-serif">10%</text>
+  </g>
+  <g class="arch-box ab6">
+    <rect x="590" y="112" width="105" height="68" rx="10" fill="white" stroke="#fecdd3" stroke-width="1.5" filter="url(#archShadow)"/>
+    <text x="642" y="132" text-anchor="middle" fill="#be123c" font-size="11" font-family="Arial,sans-serif">🏷️</text>
+    <text x="642" y="148" text-anchor="middle" fill="#0f172a" font-size="9.5" font-weight="700" font-family="Arial,sans-serif">Category</text>
+    <text x="642" y="162" text-anchor="middle" fill="#64748b" font-size="8.5" font-family="Arial,sans-serif">Alignment</text>
+    <text x="642" y="175" text-anchor="middle" fill="#f43f5e" font-size="10" font-weight="700" font-family="Arial,sans-serif">5%</text>
+  </g>
+
+  <!-- Converging arrows -->
+  <line x1="62"  y1="180" x2="340" y2="215" stroke="#94a3b8" stroke-width="1" marker-end="url(#arrow)" class="data-flow"/>
+  <line x1="178" y1="180" x2="355" y2="215" stroke="#94a3b8" stroke-width="1" marker-end="url(#arrow)" class="data-flow"/>
+  <line x1="294" y1="180" x2="370" y2="215" stroke="#94a3b8" stroke-width="1" marker-end="url(#arrow)" class="data-flow"/>
+  <line x1="380" y1="112" x2="380" y2="218" stroke="#94a3b8" stroke-width="1" marker-end="url(#arrow)" class="data-flow"/>
+  <line x1="526" y1="180" x2="410" y2="215" stroke="#94a3b8" stroke-width="1" marker-end="url(#arrow)" class="data-flow"/>
+  <line x1="642" y1="180" x2="425" y2="215" stroke="#94a3b8" stroke-width="1" marker-end="url(#arrow)" class="data-flow"/>
+
+  <!-- HYBRID ENGINE BOX -->
+  <g class="arch-box ab3">
+    <rect x="240" y="218" width="280" height="56" rx="12" fill="url(#hybridBg)" filter="url(#archShadow)"/>
+    <text x="380" y="240" text-anchor="middle" fill="white" font-size="12" font-weight="700" font-family="Arial,sans-serif">⚡ HYBRID RECOMMENDER ENGINE</text>
+    <text x="380" y="256" text-anchor="middle" fill="rgba(255,255,255,0.85)" font-size="9.5" font-family="monospace">final_score = Σ(wᵢ × signalᵢ)</text>
+    <text x="380" y="269" text-anchor="middle" fill="rgba(255,255,255,0.7)" font-size="8.5" font-family="Arial,sans-serif">6-signal weighted ensemble · catalog coverage 74%</text>
+  </g>
+
+  <!-- Arrow down to output -->
+  <line x1="380" y1="274" x2="380" y2="296" stroke="#94a3b8" stroke-width="1.5" marker-end="url(#arrow)" class="data-flow"/>
+
+  <!-- RESULTS + GEMINI ROW -->
+  <g class="arch-box ab4">
+    <rect x="20" y="298" width="300" height="62" rx="12" fill="url(#outputGrad)" filter="url(#archShadow)"/>
+    <text x="170" y="320" text-anchor="middle" fill="white" font-size="11" font-weight="700" font-family="Arial,sans-serif">✅ RANKED RECOMMENDATIONS</text>
+    <text x="170" y="336" text-anchor="middle" fill="rgba(255,255,255,0.85)" font-size="9.5" font-family="Arial,sans-serif">destination · match_score · match_reasons</text>
+    <text x="170" y="352" text-anchor="middle" fill="rgba(255,255,255,0.75)" font-size="9" font-family="Arial,sans-serif">rating · budget_level · best_season · travel_tips</text>
+  </g>
+  <g class="arch-box ab5">
+    <rect x="440" y="298" width="300" height="62" rx="12" fill="url(#geminiGrad)" filter="url(#archShadow)"/>
+    <text x="590" y="320" text-anchor="middle" fill="white" font-size="11" font-weight="700" font-family="Arial,sans-serif">✨ GEMINI AI ENRICHMENT</text>
+    <text x="590" y="336" text-anchor="middle" fill="rgba(255,255,255,0.85)" font-size="9.5" font-family="Arial,sans-serif">explanation · itinerary · tips · disclaimer</text>
+    <text x="590" y="352" text-anchor="middle" fill="rgba(255,255,255,0.75)" font-size="9" font-family="Arial,sans-serif">Fallback templates if API key missing</text>
+  </g>
+  <!-- Connecting arrows to results -->
+  <line x1="320" y1="274" x2="170" y2="298" stroke="#94a3b8" stroke-width="1" marker-end="url(#arrow)"/>
+  <line x1="440" y1="274" x2="590" y2="298" stroke="#94a3b8" stroke-width="1" marker-end="url(#arrow)"/>
+</svg>
