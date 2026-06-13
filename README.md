@@ -211,14 +211,7 @@ China's domestic tourism generates hundreds of millions of visits annually. Trav
 
 ## 🏗️ Recommendation System Architecture
 
-<div align="center">
-
-<!-- Animated Architecture Diagram -->
-<p align="center">
-  <img src="./assets/08-recommendation-architecture.svg" alt="Recommendation system architecture diagram" width="760">
-</p>
-
-</div>
+<img width="1774" height="887" alt="Image" src="https://github.com/user-attachments/assets/799ee6f8-85e9-4125-baaf-3b3281a39139" />
 
 ### Hybrid Score Formula
 
