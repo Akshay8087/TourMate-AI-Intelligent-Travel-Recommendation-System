@@ -1,0 +1,181 @@
+{% extends "base.html" %}
+{% block title %}EDA Dashboard{% endblock %}
+
+{% block content %}
+<div class="page-header">
+  <div class="container page-header-content">
+    <div class="page-header-eyebrow">📊 Exploratory Data Analysis</div>
+    <h1>Tourism Data Dashboard</h1>
+    <p>Interactive visualizations from 100,000 tourism records — revealing travel patterns, preferences, and insights across China.</p>
+  </div>
+</div>
+
+<section class="section-sm">
+  <div class="container">
+
+    <!-- KPI Row -->
+    <div class="kpi-grid" style="margin-bottom:2.5rem">
+      <div class="kpi-card sky scroll-reveal">
+        <div class="kpi-icon">🗂️</div>
+        <div class="kpi-value counter" data-target="100000" data-suffix="">100,000</div>
+        <div class="kpi-label">Total Records</div>
+      </div>
+      <div class="kpi-card mint scroll-reveal">
+        <div class="kpi-icon">🗺️</div>
+        <div class="kpi-value counter" data-target="{{ stats.unique_attractions | default(431) }}">{{ stats.unique_attractions | default(431) }}</div>
+        <div class="kpi-label">Unique Attractions</div>
+      </div>
+      <div class="kpi-card sand scroll-reveal">
+        <div class="kpi-icon">⭐</div>
+        <div class="kpi-value counter" data-target="{{ stats.avg_rating | default(4.43) }}" data-suffix="" data-decimals="2">{{ stats.avg_rating | default(4.43) }}</div>
+        <div class="kpi-label">Avg Rating</div>
+      </div>
+      <div class="kpi-card purple scroll-reveal">
+        <div class="kpi-icon">🏙️</div>
+        <div class="kpi-value counter" data-target="{{ stats.unique_provinces | default(30) }}">{{ stats.unique_provinces | default(30) }}</div>
+        <div class="kpi-label">Provinces Covered</div>
+      </div>
+      <div class="kpi-card sky scroll-reveal">
+        <div class="kpi-icon">😊</div>
+        <div class="kpi-value counter" data-target="{{ stats.very_satisfied_pct | default(52) }}" data-suffix="%" data-decimals="1">{{ stats.very_satisfied_pct | default(52.0) }}%</div>
+        <div class="kpi-label">Very Satisfied</div>
+      </div>
+      <div class="kpi-card mint scroll-reveal">
+        <div class="kpi-icon">👍</div>
+        <div class="kpi-value counter" data-target="{{ stats.highly_recommended_pct | default(55) }}" data-suffix="%" data-decimals="1">{{ stats.highly_recommended_pct | default(55.0) }}%</div>
+        <div class="kpi-label">Highly Recommended</div>
+      </div>
+    </div>
+
+    <!-- Top highlight cards -->
+    <div class="grid-4" style="margin-bottom:2.5rem">
+      <div class="card" style="padding:1.25rem;border-left:4px solid var(--sky)">
+        <div style="font-size:.72rem;color:var(--muted);text-transform:uppercase;letter-spacing:.05em">Top Category</div>
+        <div style="font-family:var(--font-display);font-size:1.05rem;font-weight:700;color:var(--ink);margin-top:.3rem">
+          {{ stats.top_category | default('Natural Scenery') }}
+        </div>
+      </div>
+      <div class="card" style="padding:1.25rem;border-left:4px solid var(--mint)">
+        <div style="font-size:.72rem;color:var(--muted);text-transform:uppercase;letter-spacing:.05em">Top Province</div>
+        <div style="font-family:var(--font-display);font-size:1.05rem;font-weight:700;color:var(--ink);margin-top:.3rem">
+          {{ stats.top_province | default('Sichuan') }}
+        </div>
+      </div>
+      <div class="card" style="padding:1.25rem;border-left:4px solid var(--sand)">
+        <div style="font-size:.72rem;color:var(--muted);text-transform:uppercase;letter-spacing:.05em">Peak Season</div>
+        <div style="font-family:var(--font-display);font-size:1.05rem;font-weight:700;color:var(--ink);margin-top:.3rem">
+          {{ stats.top_season | default('Autumn') }}
+        </div>
+      </div>
+      <div class="card" style="padding:1.25rem;border-left:4px solid #8b5cf6">
+        <div style="font-size:.72rem;color:var(--muted);text-transform:uppercase;letter-spacing:.05em">Avg Spend</div>
+        <div style="font-family:var(--font-display);font-size:1.05rem;font-weight:700;color:var(--ink);margin-top:.3rem">
+          ¥{{ stats.avg_spend | default(246) | round(0) | int }}
+        </div>
+      </div>
+    </div>
+
+    <!-- Charts Row 1 -->
+    <div class="grid-2" style="margin-bottom:1.5rem">
+      <div class="chart-card scroll-reveal">
+        <div class="chart-title">🏆 Top 15 Most Visited Attractions</div>
+        <div class="plotly-chart" data-chart='{{ charts.top_attractions }}'
+             style="min-height:500px"></div>
+      </div>
+      <div class="chart-card scroll-reveal">
+        <div class="chart-title">🏷️ Tourism Category Distribution</div>
+        <div class="plotly-chart" data-chart='{{ charts.categories }}'
+             style="min-height:450px"></div>
+      </div>
+    </div>
+
+    <!-- Charts Row 2 -->
+    <div class="grid-3" style="margin-bottom:1.5rem">
+      <div class="chart-card scroll-reveal">
+        <div class="chart-title">⭐ Rating Distribution</div>
+        <div class="plotly-chart" data-chart='{{ charts.ratings }}'
+             style="min-height:350px"></div>
+      </div>
+      <div class="chart-card scroll-reveal">
+        <div class="chart-title">💰 Ticket Price Distribution</div>
+        <div class="plotly-chart" data-chart='{{ charts.budget }}'
+             style="min-height:350px"></div>
+      </div>
+      <div class="chart-card scroll-reveal">
+        <div class="chart-title">🌸 Visitor Demand by Season</div>
+        <div class="plotly-chart" data-chart='{{ charts.season }}'
+             style="min-height:350px"></div>
+      </div>
+    </div>
+
+    <!-- Charts Row 3 -->
+    <div class="grid-2" style="margin-bottom:1.5rem">
+      <div class="chart-card scroll-reveal">
+        <div class="chart-title">🏙️ Top Provinces by Tourism Volume</div>
+        <div class="plotly-chart" data-chart='{{ charts.provinces }}'
+             style="min-height:400px"></div>
+      </div>
+      <div class="chart-card scroll-reveal">
+        <div class="chart-title">📊 Average Rating by Category</div>
+        <div class="plotly-chart" data-chart='{{ charts.rating_by_cat }}'
+             style="min-height:500px"></div>
+      </div>
+    </div>
+
+    <!-- Charts Row 4 -->
+    <div class="grid-3" style="margin-bottom:1.5rem">
+      <div class="chart-card scroll-reveal">
+        <div class="chart-title">👥 Visitors by Age Group</div>
+        <div class="plotly-chart" data-chart='{{ charts.age_groups }}'
+             style="min-height:350px"></div>
+      </div>
+      <div class="chart-card scroll-reveal">
+        <div class="chart-title">🚻 Gender Distribution</div>
+        <div class="plotly-chart" data-chart='{{ charts.gender }}'
+             style="min-height:350px"></div>
+      </div>
+      <div class="chart-card scroll-reveal">
+        <div class="chart-title">😊 Satisfaction Levels</div>
+        <div class="plotly-chart" data-chart='{{ charts.satisfaction }}'
+             style="min-height:350px"></div>
+      </div>
+    </div>
+
+    <!-- Charts Row 5 - full width -->
+    <div class="chart-card scroll-reveal" style="margin-bottom:1.5rem">
+      <div class="chart-title">💸 Spend Amount vs Rating (Sampled)</div>
+      <div class="plotly-chart" data-chart='{{ charts.spend_rating }}'
+           style="min-height:450px"></div>
+    </div>
+
+    <!-- EDA Key Findings -->
+    <div class="card" style="padding:2rem;margin-top:2rem">
+      <div style="font-family:var(--font-display);font-size:1.3rem;font-weight:700;color:var(--ink);margin-bottom:1.5rem">
+        🔍 Key EDA Findings
+      </div>
+      <div class="grid-2" style="gap:1rem">
+        {% set findings = [
+          ('📈', 'Popularity Distribution', 'Natural Scenery dominates tourism volume, making up the largest share of visitor records. However, Religious Culture and Ancient Towns show disproportionately high satisfaction rates.'),
+          ('⭐', 'Rating Consistency', 'The average rating of 4.43/5.0 suggests high overall quality, but the distribution is left-skewed — indicating a small fraction of low-rated outliers that may need attention.'),
+          ('🌸', 'Seasonal Demand', 'Autumn drives peak tourism traffic, followed by Spring. Summer and Winter show lower volume but unique opportunity for budget-conscious or off-season travelers.'),
+          ('💰', 'Budget vs Experience', 'Ticket prices cluster between ¥0–¥100, suggesting most attractions target mainstream budget travelers. Premium attractions (¥150+) are outliers with concentrated demand.'),
+          ('📍', 'Geographic Concentration', 'Top provinces like Sichuan, Yunnan, and Guangdong capture a disproportionate share of visits — indicating strong regional tourism hubs with underserved opportunities elsewhere.'),
+          ('👥', 'Demographic Patterns', 'The 26-35 age group represents the largest traveler segment, with a slight female majority. Family and solo travel dominate over group tours.'),
+          ('😊', 'Satisfaction Drivers', 'Destinations with higher attraction levels (5A) consistently score higher on both recommendation and satisfaction metrics — confirming that quality certification correlates with visitor experience.'),
+          ('🔗', 'Cross-Category Insight', 'Budget-sensitive users show stronger preference for Cultural and Natural categories over Theme Parks — suggesting price elasticity varies significantly across tourism types.'),
+        ] %}
+        {% for icon, title, text in findings %}
+        <div style="display:flex;gap:.75rem;padding:1rem;background:var(--off-white);border-radius:var(--radius-md);border:1px solid var(--border)">
+          <span style="font-size:1.5rem;flex-shrink:0">{{ icon }}</span>
+          <div>
+            <div style="font-size:.875rem;font-weight:700;color:var(--ink);margin-bottom:.3rem">{{ title }}</div>
+            <div style="font-size:.82rem;color:var(--muted);line-height:1.6">{{ text }}</div>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+
+  </div>
+</section>
+{% endblock %}

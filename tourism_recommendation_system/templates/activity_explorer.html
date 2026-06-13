@@ -1,0 +1,140 @@
+{% extends "base.html" %}
+{% block title %}Activity Explorer{% endblock %}
+
+{% block content %}
+<div class="page-header">
+  <div class="container page-header-content">
+    <div class="page-header-eyebrow">🎭 Activity Explorer</div>
+    <h1>Explore by Activity Type</h1>
+    <p>Search for destinations by activity or experience type, and discover which categories attract different types of travelers.</p>
+  </div>
+</div>
+
+<section class="section-sm">
+  <div class="container">
+
+    <!-- Search Form -->
+    <div class="form-section" style="max-width:700px;margin:0 auto 3rem">
+      <div class="form-section-title">🔍 Search by Activity or Category</div>
+      <form method="GET" action="{{ url_for('activity_explorer') }}"
+            style="display:flex;gap:.75rem;align-items:flex-end;flex-wrap:wrap">
+        <div style="flex:2;min-width:200px">
+          <label class="form-label">Activity / Keyword</label>
+          <div class="search-wrapper">
+            <span class="search-icon">🔍</span>
+            <input type="text" name="search" class="form-control search-input"
+                   placeholder="e.g. hiking, temple, ancient, nature…"
+                   value="{{ search | default('') }}">
+          </div>
+        </div>
+        <div style="flex:1;min-width:160px">
+          <label class="form-label">Or Select Category</label>
+          <select name="category" class="form-control" onchange="this.form.submit()">
+            <option value="">Browse All</option>
+            {% for cat in categories %}
+            <option value="{{ cat }}" {% if category == cat %}selected{% endif %}>{{ cat }}</option>
+            {% endfor %}
+          </select>
+        </div>
+        <div>
+          <button type="submit" class="btn btn-primary btn-sm">Search</button>
+          <a href="{{ url_for('activity_explorer') }}" class="btn btn-secondary btn-sm" style="margin-left:.5rem">Reset</a>
+        </div>
+      </form>
+
+      <!-- Quick activity pills -->
+      <div style="margin-top:1.25rem">
+        <div style="font-size:.78rem;color:var(--muted);font-weight:600;text-transform:uppercase;letter-spacing:.05em;margin-bottom:.6rem">Quick Activities</div>
+        <div class="filter-pills">
+          {% for kw in ['hiking', 'temple', 'ancient', 'nature', 'museum', 'park', 'lake', 'mountain', 'cultural', 'scenic'] %}
+          <a href="{{ url_for('activity_explorer') }}?search={{ kw }}"
+             class="filter-pill {% if search == kw %}active{% endif %}">{{ kw }}</a>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+
+    <!-- Search Results -->
+    {% if results %}
+    <div style="margin-bottom:3rem">
+      <h2 style="font-family:var(--font-display);font-size:1.3rem;color:var(--ink);margin-bottom:1.5rem">
+        🎯 Results for "{{ search }}" — {{ results | length }} destinations
+      </h2>
+      <div class="grid-auto">
+        {% for d in results %}
+        <a href="{{ url_for('destination_detail', name=d.attraction_name) }}"
+           class="dest-card scroll-reveal" style="text-decoration:none">
+          <div class="dest-card-img">
+            {{ d.category_icon | default('📍') }}
+            <span class="dest-card-level">{{ d.attraction_level | default('4A') }}</span>
+          </div>
+          <div class="dest-card-body">
+            <div class="dest-card-name">{{ d.attraction_name }}</div>
+            <div class="dest-card-location">📍 {{ d.city }}, {{ d.province }}</div>
+            <div class="dest-card-tags">
+              <span class="tag">{{ d.category }}</span>
+              <span class="tag">{{ d.season_icon | default('🌸') }} {{ d.best_season }}</span>
+            </div>
+            <div class="dest-card-footer">
+              <span class="stars" style="font-size:.82rem">{{ '★' * (d.avg_rating | default(4) | int) }}</span>
+              <span style="font-size:.85rem;font-weight:700;color:var(--sky-deep)">{{ d.avg_ticket_price | default(0) | currency }}</span>
+            </div>
+          </div>
+        </a>
+        {% endfor %}
+      </div>
+    </div>
+    {% elif search %}
+    <div class="empty-state" style="margin-bottom:3rem">
+      <div class="empty-icon">🔍</div>
+      <div class="empty-title">No Results for "{{ search }}"</div>
+      <div class="empty-sub">Try a different keyword like "nature", "temple", or "ancient".</div>
+    </div>
+    {% endif %}
+
+    <!-- Category Stats Grid -->
+    <div>
+      <div class="section-header" style="margin-bottom:2rem">
+        <span class="section-eyebrow">By Category</span>
+        <h2 class="section-title">All Tourism Categories</h2>
+        <p class="section-sub">Explore destinations grouped by tourism type and activity.</p>
+      </div>
+
+      <div class="grid-auto">
+        {% for c in category_stats %}
+        <a href="{{ url_for('destination_explorer') }}?category={{ c.attraction_category }}"
+           class="card scroll-reveal" style="padding:1.5rem;text-decoration:none">
+          <div style="display:flex;align-items:center;gap:.75rem;margin-bottom:1rem">
+            <span style="font-size:2rem">{{ c.icon | default('📍') }}</span>
+            <div>
+              <div style="font-family:var(--font-display);font-size:.95rem;font-weight:700;color:var(--ink)">
+                {{ c.attraction_category }}
+              </div>
+              <div style="font-size:.75rem;color:var(--muted)">{{ c.count }} visits</div>
+            </div>
+          </div>
+          <div style="display:flex;gap:.75rem;flex-wrap:wrap">
+            <div style="flex:1;text-align:center;background:var(--sky-light);border-radius:var(--radius-sm);padding:.5rem">
+              <div style="font-size:.7rem;color:var(--muted)">Avg Rating</div>
+              <div style="font-weight:700;color:var(--sky-deep)">{{ c.avg_rating | default(0) | round(1) }}★</div>
+            </div>
+            <div style="flex:1;text-align:center;background:var(--sand-light);border-radius:var(--radius-sm);padding:.5rem">
+              <div style="font-size:.7rem;color:var(--muted)">Avg Spend</div>
+              <div style="font-weight:700;color:var(--slate)">¥{{ c.avg_spend | default(0) | round(0) | int }}</div>
+            </div>
+          </div>
+          <!-- Popularity bar -->
+          <div style="margin-top:.75rem">
+            <div style="height:4px;background:var(--snow);border-radius:4px;overflow:hidden">
+              <div style="height:100%;background:linear-gradient(90deg,var(--sky),var(--mint));border-radius:4px;
+                          width:{{ [(c.count / 15000 * 100), 100] | min | round(0) | int }}%"></div>
+            </div>
+          </div>
+        </a>
+        {% endfor %}
+      </div>
+    </div>
+
+  </div>
+</section>
+{% endblock %}

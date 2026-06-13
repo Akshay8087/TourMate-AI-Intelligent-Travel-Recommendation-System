@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="TourMate AI — Intelligent Tourism Recommendation System powered by Machine Learning">
+  <title>{% block title %}TourMate AI{% endblock %} — Intelligent Tourism Recommendations</title>
+
+  <!-- Preconnect -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&display=swap" rel="stylesheet">
+
+  <!-- Plotly -->
+  <script src="https://cdn.plot.ly/plotly-2.24.1.min.js" defer></script>
+
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+
+  {% block head %}{% endblock %}
+</head>
+<body>
+
+<!-- ═══ NAVBAR ═══════════════════════════════════════════════════ -->
+<nav class="navbar" id="mainNavbar">
+  <a href="{{ url_for('index') }}" class="navbar-brand">
+    <span class="navbar-logo">✈️</span>
+    TourMate AI<span class="brand-dot"></span>
+  </a>
+
+  <ul class="navbar-links" id="navLinks">
+    {% for link in nav_links %}
+    <li>
+      <a href="{{ link.url }}" {% if request.path == link.url %}class="active"{% endif %}>
+        <span>{{ link.icon }}</span>{{ link.label }}
+      </a>
+    </li>
+    {% endfor %}
+  </ul>
+
+  <button class="navbar-toggle" id="navToggle" aria-label="Toggle menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- ═══ LOADING OVERLAY ══════════════════════════════════════════ -->
+<div class="loading-overlay" id="loadingOverlay">
+  <div class="spinner"></div>
+  <p class="loading-text">Finding perfect destinations for you…</p>
+</div>
+
+<!-- ═══ MAIN CONTENT ═════════════════════════════════════════════ -->
+<main>
+  {% block content %}{% endblock %}
+</main>
+
+<!-- ═══ FOOTER ═══════════════════════════════════════════════════ -->
+<footer class="footer">
+  <div class="container">
+    <div class="grid-3" style="gap:2rem">
+      <div>
+        <div class="footer-brand">✈️ TourMate AI</div>
+        <div class="footer-tagline">Intelligent Tourism Recommendation System</div>
+        <div style="display:flex;gap:8px;flex-wrap:wrap">
+          <span class="badge badge-sky" style="background:rgba(255,255,255,.1);color:rgba(255,255,255,.8)">Machine Learning</span>
+          <span class="badge badge-sky" style="background:rgba(255,255,255,.1);color:rgba(255,255,255,.8)">NLP</span>
+          <span class="badge badge-sky" style="background:rgba(255,255,255,.1);color:rgba(255,255,255,.8)">Gemini AI</span>
+        </div>
+      </div>
+      <div>
+        <div style="font-size:.85rem;font-weight:700;color:rgba(255,255,255,.8);margin-bottom:.75rem">EXPLORE</div>
+        <ul class="footer-links" style="flex-direction:column;gap:8px">
+          {% for link in nav_links %}
+          <li><a href="{{ link.url }}">{{ link.icon }} {{ link.label }}</a></li>
+          {% endfor %}
+        </ul>
+      </div>
+      <div>
+        <div style="font-size:.85rem;font-weight:700;color:rgba(255,255,255,.8);margin-bottom:.75rem">PROJECT INFO</div>
+        <div style="font-size:.83rem;color:rgba(255,255,255,.55);line-height:1.7">
+          Built with Flask, Scikit-learn, Pandas, and Google Gemini AI.<br>
+          Dataset: 100,000 tourism records across China.<br>
+          431 unique attractions • 20 categories • 30 provinces.
+        </div>
+      </div>
+    </div>
+    <div class="footer-disclaimer">
+      ⚠️ <strong>Disclaimer:</strong> TourMate AI is for educational and travel decision-support purposes only.
+      Always verify prices, availability, visa requirements, weather conditions, and safety advisories
+      before booking any trips. Recommendations are AI-generated and may not reflect current conditions.
+    </div>
+    <div class="footer-bottom">
+      <span>© 2024 TourMate AI — Portfolio Data Science Project</span>
+      <span style="color:rgba(255,255,255,.4)">Built with ❤️ using Python, Flask & ML</span>
+    </div>
+  </div>
+</footer>
+
+<!-- ═══ SCRIPTS ══════════════════════════════════════════════════ -->
+<script src="{{ url_for('static', filename='js/main.js') }}"></script>
+{% block scripts %}{% endblock %}
+
+</body>
+</html>

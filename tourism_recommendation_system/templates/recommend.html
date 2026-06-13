@@ -1,0 +1,173 @@
+{% extends "base.html" %}
+{% block title %}Get Recommendations{% endblock %}
+
+{% block content %}
+<div class="page-header">
+  <div class="container page-header-content">
+    <div class="page-header-eyebrow">🎯 AI Recommendation Engine</div>
+    <h1>Find Your Perfect Destination</h1>
+    <p>Tell us your travel preferences and our hybrid ML system will match you with ideal destinations from 431 attractions across China.</p>
+  </div>
+</div>
+
+<section class="section-sm">
+  <div class="container">
+
+    {% if error %}
+    <div class="alert alert-error">⚠️ {{ error }}</div>
+    {% endif %}
+
+    <form method="POST" action="{{ url_for('recommend') }}" class="recommendation-form">
+      <div class="grid-2" style="gap:2rem;align-items:start">
+
+        <!-- LEFT: Preferences -->
+        <div>
+          <div class="form-section">
+            <div class="form-section-title">🌟 Travel Preferences</div>
+            <div class="input-grid">
+
+              <div class="form-group">
+                <label class="form-label"><span>🏷️</span>Attraction Category</label>
+                <select name="category" class="form-control">
+                  <option value="">Any Category</option>
+                  {% for cat in categories %}
+                  <option value="{{ cat }}">{{ cat }}</option>
+                  {% endfor %}
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label"><span>📍</span>Preferred Province</label>
+                <select name="province" class="form-control">
+                  <option value="">Any Province</option>
+                  {% for prov in provinces %}
+                  <option value="{{ prov }}">{{ prov }}</option>
+                  {% endfor %}
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label"><span>🌸</span>Travel Season</label>
+                <select name="season" class="form-control">
+                  <option value="">Any Season</option>
+                  {% for s in seasons %}
+                  <option value="{{ s }}">
+                    {% if s == 'Spring' %}🌸{% elif s == 'Summer' %}☀️{% elif s == 'Autumn' %}🍂{% else %}❄️{% endif %}
+                    {{ s }}
+                  </option>
+                  {% endfor %}
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label"><span>💰</span>Budget Level</label>
+                <select name="budget_level" class="form-control">
+                  <option value="">Any Budget</option>
+                  {% for b in budget_levels %}
+                  <option value="{{ b }}">{{ b }}</option>
+                  {% endfor %}
+                </select>
+              </div>
+
+            </div>
+          </div>
+
+          <div class="form-section">
+            <div class="form-section-title">⚙️ Advanced Filters</div>
+            <div class="input-grid">
+
+              <div class="form-group">
+                <label class="form-label"><span>⭐</span>Minimum Rating:
+                  <span id="ratingLabel" style="color:var(--sky-deep);margin-left:8px">3.5 ★</span>
+                </label>
+                <input type="range" id="minRating" name="min_rating"
+                       class="rating-slider" min="3.0" max="5.0" step="0.1" value="3.5">
+                <div class="form-hint">Filter out low-rated destinations</div>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label"><span>🔢</span>Number of Results</label>
+                <select name="n" class="form-control">
+                  <option value="5">5 destinations</option>
+                  <option value="10" selected>10 destinations</option>
+                  <option value="15">15 destinations</option>
+                  <option value="20">20 destinations</option>
+                </select>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- RIGHT: Search by name + submit -->
+        <div>
+          <div class="form-section">
+            <div class="form-section-title">🔍 Search by Attraction</div>
+            <div class="form-group">
+              <label class="form-label"><span>🏔️</span>Know a Destination You Like?</label>
+              <div class="search-wrapper">
+                <span class="search-icon">🔍</span>
+                <input type="text" id="attractionName" name="attraction_name"
+                       class="form-control search-input"
+                       placeholder="e.g. Huang Shan, West Lake…">
+              </div>
+              <div class="form-hint">Leave blank to use category/budget filters only</div>
+            </div>
+          </div>
+
+          <!-- Info card -->
+          <div style="background:linear-gradient(135deg,var(--sky-light),var(--mint-light));border-radius:var(--radius-xl);padding:1.75rem;border:1px solid rgba(14,165,233,.2);margin-bottom:1.5rem">
+            <div style="font-family:var(--font-display);font-size:1rem;font-weight:700;color:var(--ink);margin-bottom:1rem">🤖 How the AI Works</div>
+            <div style="font-size:.83rem;color:var(--muted);line-height:1.8">
+              Our hybrid recommender combines:<br>
+              <strong style="color:var(--sky-deep)">30%</strong> Content similarity (TF-IDF)<br>
+              <strong style="color:var(--sky-deep)">25%</strong> Popularity score<br>
+              <strong style="color:var(--sky-deep)">20%</strong> Rating score<br>
+              <strong style="color:var(--sky-deep)">10%</strong> Budget compatibility<br>
+              <strong style="color:var(--sky-deep)">10%</strong> Season match<br>
+              <strong style="color:var(--sky-deep)">5%</strong> Category alignment
+            </div>
+          </div>
+
+          <button type="submit" class="btn btn-primary" style="width:100%;justify-content:center;padding:16px;font-size:1.05rem">
+            🎯 Get My Recommendations
+          </button>
+          <div style="text-align:center;margin-top:.75rem;font-size:.8rem;color:var(--muted)">
+            Powered by ML + Gemini AI
+          </div>
+        </div>
+      </div>
+    </form>
+
+    <!-- Quick filter buttons -->
+    <div style="margin-top:3rem">
+      <div style="font-size:.85rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;margin-bottom:1rem">⚡ Quick Searches</div>
+      <div class="filter-pills">
+        {% set quick = [
+          ('🏔️', 'Natural Scenery', 'Nature', ''),
+          ('🏛️', 'Historical Culture', 'History', ''),
+          ('🏘️', 'Ancient Town', 'Culture', ''),
+          ('⛩️', 'Religious Culture', 'Spiritual', ''),
+          ('🎡', 'Theme Park', 'Fun', ''),
+          ('🌿', 'Natural Culture', 'Eco', ''),
+        ] %}
+        {% for icon, cat, label, _ in quick %}
+        <button class="filter-pill" onclick="quickFilter('{{ cat }}')">{{ icon }} {{ label }}</button>
+        {% endfor %}
+      </div>
+    </div>
+
+  </div>
+</section>
+{% endblock %}
+
+{% block scripts %}
+<script>
+function quickFilter(category) {
+  const sel = document.querySelector('select[name="category"]');
+  if (sel) {
+    sel.value = category;
+    sel.closest('form').querySelector('button[type="submit"]').click();
+  }
+}
+</script>
+{% endblock %}

@@ -1,0 +1,346 @@
+{% extends "base.html" %}
+{% block title %}Explore Destinations{% endblock %}
+
+{% block content %}
+<div class="page-header">
+  <div class="container page-header-content">
+    <div class="page-header-eyebrow">🗺️ Destination Explorer</div>
+    <h1>{% if destination %}{{ destination.attraction_name }}{% else %}Explore Destinations{% endif %}</h1>
+    <p>{% if destination %}{{ destination.category }} · {{ destination.city }}, {{ destination.province }}{% else %}Browse all {{ metadata.n_attractions | default(431) }}+ attractions across China{% endif %}</p>
+  </div>
+</div>
+
+<section class="section-sm">
+  <div class="container">
+
+  {% if destination %}
+  <!-- ═══ DESTINATION DETAIL VIEW ═══════════════════════════ -->
+  <div class="breadcrumb">
+    <a href="{{ url_for('index') }}">Home</a>
+    <span class="breadcrumb-sep">›</span>
+    <a href="{{ url_for('destination_explorer') }}">Explore</a>
+    <span class="breadcrumb-sep">›</span>
+    <span>{{ destination.attraction_name }}</span>
+  </div>
+
+  <div class="grid-2" style="gap:2rem;align-items:start">
+    <!-- LEFT: Details -->
+    <div>
+      <div class="dest-hero">{{ destination.category_icon | default('🏔️') }}</div>
+
+      <div class="dest-meta-grid">
+        <div class="dest-meta-item">
+          <div class="dest-meta-label">Avg Rating</div>
+          <div class="dest-meta-value">
+            <span class="stars">{{ '★' * (destination.avg_rating | default(4) | int) }}</span>
+            {{ destination.avg_rating | default(4.0) | round(1) }}
+          </div>
+        </div>
+        <div class="dest-meta-item">
+          <div class="dest-meta-label">Ticket Price</div>
+          <div class="dest-meta-value">{{ destination.avg_ticket_price | default(0) | currency }}</div>
+        </div>
+        <div class="dest-meta-item">
+          <div class="dest-meta-label">Best Season</div>
+          <div class="dest-meta-value">{{ destination.season_icon | default('🌸') }} {{ destination.best_season }}</div>
+        </div>
+        <div class="dest-meta-item">
+          <div class="dest-meta-label">Visit Count</div>
+          <div class="dest-meta-value">{{ destination.visit_count | default(0) | int }}</div>
+        </div>
+        <div class="dest-meta-item">
+          <div class="dest-meta-label">Avg Duration</div>
+          <div class="dest-meta-value">{{ destination.avg_duration | default(3.0) | round(1) }}h</div>
+        </div>
+        <div class="dest-meta-item">
+          <div class="dest-meta-label">Attraction Level</div>
+          <div class="dest-meta-value">
+            {% if destination.attraction_level == '5A' %}<span class="badge badge-5a">👑 5A</span>
+            {% elif destination.attraction_level == '4A' %}<span class="badge badge-4a">⭐ 4A</span>
+            {% else %}<span class="badge badge-snow">{{ destination.attraction_level }}</span>{% endif %}
+          </div>
+        </div>
+      </div>
+
+      <div class="card" style="padding:1.5rem;margin-bottom:1.5rem">
+        <div style="font-weight:700;color:var(--ink);margin-bottom:1rem;font-family:var(--font-display)">📊 Visitor Statistics</div>
+        {% if visitor_stats %}
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem">
+          <div>
+            <div style="font-size:.75rem;color:var(--muted);text-transform:uppercase;letter-spacing:.04em">Total Visits</div>
+            <div style="font-weight:700;font-size:1.1rem;color:var(--sky-deep)">{{ visitor_stats.total_visits | default(0) }}</div>
+          </div>
+          <div>
+            <div style="font-size:.75rem;color:var(--muted);text-transform:uppercase;letter-spacing:.04em">Avg Rating</div>
+            <div style="font-weight:700;font-size:1.1rem;color:var(--sky-deep)">{{ visitor_stats.avg_rating | default(0) }}</div>
+          </div>
+          <div>
+            <div style="font-size:.75rem;color:var(--muted);text-transform:uppercase;letter-spacing:.04em">Avg Spend</div>
+            <div style="font-weight:700;font-size:1.1rem;color:var(--sky-deep)">¥{{ visitor_stats.avg_spend | default(0) | round(0) | int }}</div>
+          </div>
+          <div>
+            <div style="font-size:.75rem;color:var(--muted);text-transform:uppercase;letter-spacing:.04em">Peak Season</div>
+            <div style="font-weight:700;font-size:1.1rem;color:var(--sky-deep)">{{ visitor_stats.top_season | default('N/A') }}</div>
+          </div>
+        </div>
+        {% if visitor_stats.gender_split %}
+        <div style="margin-top:1rem;padding-top:1rem;border-top:1px solid var(--snow)">
+          <div style="font-size:.75rem;color:var(--muted);text-transform:uppercase;letter-spacing:.04em;margin-bottom:.5rem">Gender Split</div>
+          <div style="display:flex;gap:1rem">
+            {% for gender, count in visitor_stats.gender_split.items() %}
+            <span class="badge badge-sky">{{ gender }}: {{ count }}</span>
+            {% endfor %}
+          </div>
+        </div>
+        {% endif %}
+        {% endif %}
+      </div>
+
+      <div style="display:flex;gap:.75rem;flex-wrap:wrap">
+        <a href="{{ url_for('recommend') }}?category={{ destination.category }}" class="btn btn-primary btn-sm">
+          🎯 Find Similar Destinations
+        </a>
+        <button onclick="shareDestination('{{ destination.attraction_name }}', window.location.href)"
+                class="btn btn-secondary btn-sm">
+          📤 Share
+        </button>
+      </div>
+    </div>
+
+    <!-- RIGHT: AI Insight -->
+    <div>
+      {% if insight %}
+      <div class="insight-panel">
+        <div class="insight-header">
+          <span class="insight-icon">✨</span>
+          <div>
+            <div class="insight-title">AI Travel Insight</div>
+            <div class="insight-source">
+              {% if insight.source == 'gemini' %}Powered by Google Gemini AI{% else %}TourMate AI Analysis{% endif %}
+            </div>
+          </div>
+        </div>
+
+        <div class="insight-text">{{ insight.explanation | default('') }}</div>
+
+        {% if insight.activities %}
+        <div style="margin-bottom:1rem">
+          <div style="font-size:.8rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.05em;margin-bottom:.6rem">Suggested Activities</div>
+          <div class="insight-activities">
+            {% for act in insight.activities %}
+            <span class="tag">✓ {{ act }}</span>
+            {% endfor %}
+          </div>
+        </div>
+        {% endif %}
+
+        {% if insight.tips %}
+        <div style="margin-bottom:1rem">
+          <div style="font-size:.8rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.05em;margin-bottom:.6rem">Travel Tips</div>
+          {% for tip in insight.tips %}
+          <div class="insight-tip">💡 {{ tip }}</div>
+          {% endfor %}
+        </div>
+        {% endif %}
+
+        {% if insight.itinerary %}
+        <div style="margin-bottom:1rem">
+          <div style="font-size:.8rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.05em;margin-bottom:.6rem">Suggested Itinerary</div>
+          <div class="insight-tip" style="border-left-color:var(--sky)">🗓️ {{ insight.itinerary }}</div>
+        </div>
+        {% endif %}
+
+        {% if insight.best_time %}
+        <div style="margin-bottom:1rem">
+          <div class="insight-tip" style="border-left-color:var(--sand)">🌤️ {{ insight.best_time }}</div>
+        </div>
+        {% endif %}
+
+        {% if insight.alternative %}
+        <div class="insight-tip" style="border-left-color:var(--mint)">🔄 {{ insight.alternative }}</div>
+        {% endif %}
+
+        <div class="disclaimer">{{ insight.disclaimer | default('') | replace('\n', '<br>') }}</div>
+      </div>
+      {% endif %}
+
+      <!-- Badges summary -->
+      <div class="card" style="padding:1.5rem">
+        <div style="font-weight:700;color:var(--ink);margin-bottom:1rem;font-family:var(--font-display)">🏷️ Tags</div>
+        <div style="display:flex;flex-wrap:wrap;gap:.5rem">
+          <span class="badge badge-sky">{{ destination.category }}</span>
+          <span class="badge badge-mint">{{ destination.province }}</span>
+          <span class="badge badge-snow">{{ destination.city }}</span>
+          <span class="badge badge-sand">{{ destination.season_icon }} {{ destination.best_season }}</span>
+          {% if destination.budget_badge %}
+          <span class="badge" style="background:{{ destination.budget_badge.color }}22;color:{{ destination.budget_badge.color }}">
+            {{ destination.budget_badge.icon }} {{ destination.budget_badge.text }}
+          </span>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Similar Destinations -->
+  {% if similar %}
+  <div style="margin-top:3rem">
+    <h2 style="font-family:var(--font-display);font-size:1.4rem;margin-bottom:1.5rem;color:var(--ink)">
+      🔗 Similar Destinations
+    </h2>
+    <div class="grid-auto">
+      {% for s in similar %}
+      <a href="{{ url_for('destination_detail', name=s.attraction_name) }}"
+         class="dest-card dest-card-wrapper" style="text-decoration:none">
+        <div class="dest-card-img">
+          {{ s.category_icon | default('📍') }}
+          <span class="dest-card-level">{{ s.attraction_level | default('4A') }}</span>
+        </div>
+        <div class="dest-card-body">
+          <div class="dest-card-name">{{ s.attraction_name }}</div>
+          <div class="dest-card-location">📍 {{ s.city }}, {{ s.province }}</div>
+          <div class="dest-card-tags">
+            <span class="tag">{{ s.category }}</span>
+            <span class="tag">{{ s.season_icon | default('🌸') }} {{ s.best_season }}</span>
+          </div>
+          <div class="dest-card-footer">
+            <span class="stars" style="font-size:.85rem">{{ '★' * (s.avg_rating | default(4) | int) }}</span>
+            <span style="font-size:.85rem;font-weight:700;color:var(--sky-deep)">{{ s.avg_ticket_price | default(0) | currency }}</span>
+          </div>
+        </div>
+      </a>
+      {% endfor %}
+    </div>
+  </div>
+  {% endif %}
+
+  {% elif error %}
+  <!-- Error state -->
+  <div class="empty-state">
+    <div class="empty-icon">🔍</div>
+    <div class="empty-title">Destination Not Found</div>
+    <div class="empty-sub">{{ error }}</div>
+    <a href="{{ url_for('destination_explorer') }}" class="btn btn-primary">Browse All Destinations</a>
+  </div>
+
+  {% else %}
+  <!-- ═══ EXPLORER GRID VIEW ════════════════════════════════ -->
+
+  <div class="grid-2" style="gap:2rem;align-items:start">
+    <!-- Filter Sidebar -->
+    <div style="grid-column:span 2">
+      <form method="GET" action="{{ url_for('destination_explorer') }}"
+            style="display:flex;flex-wrap:wrap;gap:.75rem;align-items:flex-end;margin-bottom:2rem">
+        <div style="flex:2;min-width:200px">
+          <label class="form-label">🔍 Search</label>
+          <div class="search-wrapper">
+            <span class="search-icon">🔍</span>
+            <input type="text" name="search" class="form-control search-input"
+                   placeholder="Attraction, city, province…" value="{{ filters.search | default('') }}">
+          </div>
+        </div>
+        <div style="flex:1;min-width:150px">
+          <label class="form-label">Category</label>
+          <select name="category" class="form-control">
+            <option value="">All Categories</option>
+            {% for cat in categories %}
+            <option value="{{ cat }}" {% if filters.category == cat %}selected{% endif %}>{{ cat }}</option>
+            {% endfor %}
+          </select>
+        </div>
+        <div style="flex:1;min-width:140px">
+          <label class="form-label">Province</label>
+          <select name="province" class="form-control">
+            <option value="">All Provinces</option>
+            {% for prov in provinces %}
+            <option value="{{ prov }}" {% if filters.province == prov %}selected{% endif %}>{{ prov }}</option>
+            {% endfor %}
+          </select>
+        </div>
+        <div style="flex:1;min-width:130px">
+          <label class="form-label">Season</label>
+          <select name="season" class="form-control">
+            <option value="">Any Season</option>
+            {% for s in seasons %}
+            <option value="{{ s }}" {% if filters.season == s %}selected{% endif %}>{{ s }}</option>
+            {% endfor %}
+          </select>
+        </div>
+        <div style="flex:1;min-width:130px">
+          <label class="form-label">Budget</label>
+          <select name="budget" class="form-control">
+            <option value="">Any Budget</option>
+            {% for b in budget_levels %}
+            <option value="{{ b }}" {% if filters.budget == b %}selected{% endif %}>{{ b }}</option>
+            {% endfor %}
+          </select>
+        </div>
+        <div style="flex:1;min-width:130px">
+          <label class="form-label">Sort By</label>
+          <select name="sort_by" class="form-control">
+            <option value="popularity_score" {% if filters.sort_by == 'popularity_score' %}selected{% endif %}>Popularity</option>
+            <option value="avg_rating" {% if filters.sort_by == 'avg_rating' %}selected{% endif %}>Rating</option>
+            <option value="avg_ticket_price" {% if filters.sort_by == 'avg_ticket_price' %}selected{% endif %}>Price</option>
+            <option value="visit_count" {% if filters.sort_by == 'visit_count' %}selected{% endif %}>Visit Count</option>
+          </select>
+        </div>
+        <div>
+          <button type="submit" class="btn btn-primary btn-sm">🔍 Filter</button>
+          <a href="{{ url_for('destination_explorer') }}" class="btn btn-secondary btn-sm" style="margin-left:.5rem">Reset</a>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Results count -->
+  <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:1.5rem">
+    <div style="font-size:.9rem;color:var(--muted)">
+      Showing <strong style="color:var(--ink)">{{ total | default(0) }}</strong> destinations
+      {% if filters.category or filters.province or filters.search %} (filtered){% endif %}
+    </div>
+  </div>
+
+  <!-- Grid -->
+  {% if destinations %}
+  <div class="grid-auto">
+    {% for d in destinations %}
+    <a href="{{ url_for('destination_detail', name=d.attraction_name) }}"
+       class="dest-card dest-card-wrapper scroll-reveal" style="text-decoration:none">
+      <div class="dest-card-img">
+        {{ d.category_icon | default('📍') }}
+        <span class="dest-card-level">{{ d.attraction_level | default('4A') }}</span>
+      </div>
+      <div class="dest-card-body">
+        <div class="dest-card-name">{{ d.attraction_name }}</div>
+        <div class="dest-card-location">📍 {{ d.city }}, {{ d.province }}</div>
+        <div class="dest-card-tags">
+          <span class="tag">{{ d.category }}</span>
+          {% if d.season_icon %}<span class="tag">{{ d.season_icon }} {{ d.best_season }}</span>{% endif %}
+          {% if d.budget_badge %}
+          <span class="tag" style="color:{{ d.budget_badge.color }}">{{ d.budget_badge.icon }}</span>
+          {% endif %}
+        </div>
+        <div class="dest-card-footer">
+          <div>
+            <span class="stars" style="font-size:.82rem">{{ '★' * (d.avg_rating | default(4) | int) }}</span>
+            <span style="font-size:.82rem;color:var(--muted)"> {{ d.avg_rating | default(4.0) | round(1) }}</span>
+          </div>
+          <span style="font-size:.85rem;font-weight:700;color:var(--sky-deep)">{{ d.avg_ticket_price | default(0) | currency }}</span>
+        </div>
+      </div>
+    </a>
+    {% endfor %}
+  </div>
+  {% else %}
+  <div class="empty-state">
+    <div class="empty-icon">🔍</div>
+    <div class="empty-title">No Destinations Match</div>
+    <div class="empty-sub">Try broadening your filters.</div>
+    <a href="{{ url_for('destination_explorer') }}" class="btn btn-primary">Clear Filters</a>
+  </div>
+  {% endif %}
+
+  {% endif %}
+  </div>
+</section>
+{% endblock %}

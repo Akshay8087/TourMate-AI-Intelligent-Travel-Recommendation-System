@@ -1,0 +1,259 @@
+{% extends "base.html" %}
+{% block title %}Home{% endblock %}
+
+{% block content %}
+
+<!-- ══ HERO ════════════════════════════════════════════════════ -->
+<section class="hero">
+  <div class="hero-grid"></div>
+  <div class="container" style="width:100%;position:relative;z-index:2">
+    <div class="hero-content">
+
+      <div class="hero-badge">
+        <span class="hero-badge-dot"></span>
+        AI-Powered Travel Intelligence
+      </div>
+
+      <h1>
+        Discover Your<br>
+        <span class="gradient-text">Perfect Journey</span>
+      </h1>
+
+      <p class="hero-sub">
+        TourMate AI analyzes {{ stats.total_records | default(100000) | int | string | replace('0', '0') }}+ travel records
+        to deliver hyper-personalized destination recommendations — powered by Machine Learning, NLP, and Google Gemini AI.
+      </p>
+
+      <div class="hero-actions">
+        <a href="{{ url_for('recommend') }}" class="btn btn-primary btn-lg">
+          🎯 Get My Recommendations
+        </a>
+        <a href="{{ url_for('destination_explorer') }}" class="btn btn-secondary btn-lg">
+          🗺️ Explore Destinations
+        </a>
+      </div>
+
+      <div class="hero-stats">
+        <div>
+          <span class="hero-stat-num counter" data-target="{{ stats.unique_attractions | default(431) }}" data-suffix="+">0</span>
+          <span class="hero-stat-label">Attractions</span>
+        </div>
+        <div>
+          <span class="hero-stat-num counter" data-target="{{ stats.unique_provinces | default(30) }}" data-suffix="">0</span>
+          <span class="hero-stat-label">Provinces</span>
+        </div>
+        <div>
+          <span class="hero-stat-num counter" data-target="{{ stats.unique_categories | default(20) }}" data-suffix="">0</span>
+          <span class="hero-stat-label">Categories</span>
+        </div>
+        <div>
+          <span class="hero-stat-num counter" data-target="{{ stats.avg_rating | default(4.43) }}" data-suffix="★" data-decimals="1">0</span>
+          <span class="hero-stat-label">Avg Rating</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Floating cards -->
+  <div class="hero-visual">
+    <div class="hero-float-cards">
+      <div class="float-card">
+        <div class="float-card-icon">🏔️</div>
+        <div class="float-card-title">Natural Scenery</div>
+        <div class="float-card-meta">Huang Shan • Anhui</div>
+        <div class="float-card-rating">★★★★★ <span style="color:#64748b">4.9 · 5A</span></div>
+      </div>
+      <div class="float-card">
+        <div class="float-card-icon">🏯</div>
+        <div class="float-card-title">Ancient Town</div>
+        <div class="float-card-meta">Ping Yao Gu Cheng</div>
+        <div class="float-card-rating">★★★★½ <span style="color:#64748b">4.7 · 5A</span></div>
+      </div>
+      <div class="float-card">
+        <div class="float-card-icon">⛩️</div>
+        <div class="float-card-title">Religious Culture</div>
+        <div class="float-card-meta">Shao Lin Si • Henan</div>
+        <div class="float-card-rating">★★★★☆ <span style="color:#64748b">4.5 · 5A</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ KPI SECTION ═════════════════════════════════════════════ -->
+<section class="section section-alt">
+  <div class="container">
+    <div class="kpi-grid">
+      <div class="kpi-card sky scroll-reveal">
+        <div class="kpi-icon">🗺️</div>
+        <div class="kpi-value counter" data-target="{{ stats.unique_attractions | default(431) }}">0</div>
+        <div class="kpi-label">Unique Attractions</div>
+      </div>
+      <div class="kpi-card mint scroll-reveal">
+        <div class="kpi-icon">👥</div>
+        <div class="kpi-value counter" data-target="100" data-suffix="K+">0</div>
+        <div class="kpi-label">Travel Records</div>
+      </div>
+      <div class="kpi-card sand scroll-reveal">
+        <div class="kpi-icon">⭐</div>
+        <div class="kpi-value counter" data-target="{{ stats.highly_recommended_pct | default(55) }}" data-suffix="%" data-decimals="0">0</div>
+        <div class="kpi-label">Highly Recommended</div>
+      </div>
+      <div class="kpi-card purple scroll-reveal">
+        <div class="kpi-icon">😊</div>
+        <div class="kpi-value counter" data-target="{{ stats.very_satisfied_pct | default(52) }}" data-suffix="%" data-decimals="0">0</div>
+        <div class="kpi-label">Very Satisfied Visitors</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ HOW IT WORKS ════════════════════════════════════════════ -->
+<section class="section">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-eyebrow">How It Works</span>
+      <h2 class="section-title">AI-Powered Travel Matching</h2>
+      <p class="section-sub">Our hybrid recommendation engine combines multiple ML approaches for the most personalized results.</p>
+    </div>
+
+    <div class="grid-3">
+      <div class="card scroll-reveal" style="text-align:center;padding:2.5rem 2rem">
+        <div style="font-size:3rem;margin-bottom:1rem">🎯</div>
+        <h3 style="font-family:var(--font-display);font-size:1.2rem;margin-bottom:.75rem;color:var(--ink)">Tell Us Your Preferences</h3>
+        <p style="color:var(--muted);font-size:.9rem;line-height:1.7">
+          Choose your category, budget, season, and travel style. Our form adapts to capture exactly what you need.
+        </p>
+      </div>
+      <div class="card scroll-reveal" style="text-align:center;padding:2.5rem 2rem">
+        <div style="font-size:3rem;margin-bottom:1rem">🤖</div>
+        <h3 style="font-family:var(--font-display);font-size:1.2rem;margin-bottom:.75rem;color:var(--ink)">Hybrid ML Analysis</h3>
+        <p style="color:var(--muted);font-size:.9rem;line-height:1.7">
+          TF-IDF content similarity, popularity scoring, rating analysis, and budget matching work together for precision.
+        </p>
+      </div>
+      <div class="card scroll-reveal" style="text-align:center;padding:2.5rem 2rem">
+        <div style="font-size:3rem;margin-bottom:1rem">✨</div>
+        <h3 style="font-family:var(--font-display);font-size:1.2rem;margin-bottom:.75rem;color:var(--ink)">Gemini AI Insights</h3>
+        <p style="color:var(--muted);font-size:.9rem;line-height:1.7">
+          Every recommendation is enriched with personalized travel tips, suggested itineraries, and AI-generated insights.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ CATEGORIES SHOWCASE ═════════════════════════════════════ -->
+<section class="section section-sky">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-eyebrow">What to Explore</span>
+      <h2 class="section-title">Tourism Categories</h2>
+      <p class="section-sub">From ancient towns to natural wonders — discover China's richest travel experiences.</p>
+    </div>
+
+    <div class="grid-4">
+      {% set cats = [
+        ('🏔️', 'Natural Scenery', 'Breathtaking mountains, lakes, and landscapes'),
+        ('🏛️', 'Historical Culture', 'Ancient dynasties and cultural heritage'),
+        ('🏘️', 'Ancient Town', 'Step into living history in preserved old towns'),
+        ('⛩️', 'Religious Culture', 'Sacred temples, monasteries, and pilgrimage sites'),
+        ('🌿', 'Natural Culture', 'Unique ecological and cultural fusion sites'),
+        ('🎡', 'Theme Park', 'World-class entertainment and family fun'),
+        ('🚩', 'Revolutionary Site', 'Landmark sites of modern Chinese history'),
+        ('🌊', 'Natural Wonder', 'Awe-inspiring geological and natural phenomena'),
+      ] %}
+      {% for icon, name, desc in cats %}
+      <a href="{{ url_for('destination_explorer') }}?category={{ name }}" class="card scroll-reveal" style="padding:1.5rem;text-align:center;text-decoration:none">
+        <div style="font-size:2.5rem;margin-bottom:.75rem">{{ icon }}</div>
+        <div style="font-family:var(--font-display);font-size:.95rem;font-weight:700;color:var(--ink);margin-bottom:.4rem">{{ name }}</div>
+        <div style="font-size:.78rem;color:var(--muted);line-height:1.5">{{ desc }}</div>
+      </a>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<!-- ══ TOP STATS ═══════════════════════════════════════════════ -->
+<section class="section section-alt">
+  <div class="container">
+    <div class="grid-2" style="gap:3rem;align-items:center">
+      <div>
+        <span class="section-eyebrow">Data Insights</span>
+        <h2 class="section-title" style="text-align:left">What the Data Tells Us</h2>
+        <p style="color:var(--muted);margin-bottom:2rem;font-size:.95rem;line-height:1.8">
+          Our analysis of 100,000 tourism records reveals fascinating patterns in how Chinese travelers explore their country.
+        </p>
+
+        <div style="display:flex;flex-direction:column;gap:1rem">
+          {% set insights = [
+            ('🏆', 'Top Category', stats.top_category | default('Natural Scenery')),
+            ('📍', 'Most Popular Province', stats.top_province | default('Sichuan')),
+            ('🌸', 'Peak Season', stats.top_season | default('Autumn')),
+            ('⭐', 'Average Rating', (stats.avg_rating | default(4.43) | round(2)) | string + ' / 5.0'),
+            ('💰', 'Avg Ticket Price', '¥' + (stats.avg_ticket_price | default(80.8) | round(1) | string)),
+          ] %}
+          {% for icon, label, value in insights %}
+          <div style="display:flex;align-items:center;gap:1rem;padding:1rem;background:var(--off-white);border-radius:var(--radius-md);border:1px solid var(--border)">
+            <span style="font-size:1.5rem">{{ icon }}</span>
+            <div>
+              <div style="font-size:.78rem;color:var(--muted);font-weight:600;text-transform:uppercase;letter-spacing:.04em">{{ label }}</div>
+              <div style="font-weight:700;color:var(--ink)">{{ value }}</div>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+      <div>
+        <div class="card" style="padding:2rem;text-align:center;background:linear-gradient(135deg,var(--sky-light),var(--mint-light))">
+          <div style="font-size:4rem;margin-bottom:1rem">🤖</div>
+          <h3 style="font-family:var(--font-display);font-size:1.4rem;margin-bottom:.75rem;color:var(--ink)">7 ML Models Working For You</h3>
+          <div style="display:flex;flex-direction:column;gap:.6rem;text-align:left">
+            {% set models = [
+              ('🎯', 'Hybrid Recommender', 'Combines 6 scoring signals'),
+              ('📝', 'TF-IDF Content Model', 'Text-based similarity matching'),
+              ('📊', 'Popularity Baseline', 'Crowd-sourced rankings'),
+              ('🌳', 'Random Forest Classifier', 'Category prediction'),
+              ('📈', 'Gradient Boosting Regressor', 'Rating prediction'),
+              ('🔵', 'KMeans Clustering', '6 traveler profiles'),
+            ] %}
+            {% for icon, name, desc in models %}
+            <div style="display:flex;gap:.75rem;align-items:center;padding:.6rem .75rem;background:rgba(255,255,255,.7);border-radius:10px">
+              <span>{{ icon }}</span>
+              <div>
+                <div style="font-size:.85rem;font-weight:600;color:var(--ink)">{{ name }}</div>
+                <div style="font-size:.75rem;color:var(--muted)">{{ desc }}</div>
+              </div>
+            </div>
+            {% endfor %}
+          </div>
+          <a href="{{ url_for('model_performance') }}" class="btn btn-primary btn-sm" style="margin-top:1.5rem;width:100%;justify-content:center">
+            View Model Performance →
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ CTA SECTION ════════════════════════════════════════════ -->
+<section class="section" style="background:linear-gradient(135deg,var(--sky-deep) 0%,var(--sky) 50%,var(--mint) 100%)">
+  <div class="container" style="text-align:center">
+    <div style="color:rgba(255,255,255,.8);font-size:.85rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;margin-bottom:.75rem">Ready to Explore?</div>
+    <h2 style="font-family:var(--font-display);font-size:clamp(2rem,4vw,3rem);color:white;margin-bottom:1rem;font-weight:700">
+      Find Your Dream Destination
+    </h2>
+    <p style="color:rgba(255,255,255,.8);max-width:520px;margin:0 auto 2.5rem;font-size:1.05rem;line-height:1.7">
+      Let our AI analyze your travel preferences and discover hidden gems across China's most beautiful destinations.
+    </p>
+    <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap">
+      <a href="{{ url_for('recommend') }}" class="btn" style="background:white;color:var(--sky-deep);font-weight:700;box-shadow:0 8px 24px rgba(0,0,0,.2)">
+        🎯 Get AI Recommendations
+      </a>
+      <a href="{{ url_for('dashboard') }}" class="btn btn-secondary" style="border-color:rgba(255,255,255,.4);color:white;background:rgba(255,255,255,.15)">
+        📊 View EDA Dashboard
+      </a>
+    </div>
+  </div>
+</section>
+
+{% endblock %}

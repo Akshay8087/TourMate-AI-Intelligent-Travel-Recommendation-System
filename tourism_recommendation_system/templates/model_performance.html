@@ -1,0 +1,294 @@
+{% extends "base.html" %}
+{% block title %}Model Performance{% endblock %}
+
+{% block content %}
+<div class="page-header">
+  <div class="container page-header-content">
+    <div class="page-header-eyebrow">🤖 ML Model Evaluation</div>
+    <h1>Model Performance & Architecture</h1>
+    <p>Detailed metrics, model comparison, and recommendation system architecture for TourMate AI's machine learning pipeline.</p>
+  </div>
+</div>
+
+<section class="section-sm">
+  <div class="container">
+
+    <!-- System Architecture Overview -->
+    <div class="card" style="padding:2rem;margin-bottom:2rem;background:linear-gradient(135deg,var(--sky-light),var(--mint-light))">
+      <div style="font-family:var(--font-display);font-size:1.3rem;font-weight:700;color:var(--ink);margin-bottom:1.5rem">
+        🏗️ System Architecture
+      </div>
+      <div class="grid-4">
+        {% set arch = [
+          ('📥', 'Data Layer', '100K records\n431 attractions\n30 provinces\n20 categories'),
+          ('⚙️', 'Preprocessing', 'Cleaning & encoding\nFeature engineering\nCatalog building\nTF-IDF preparation'),
+          ('🤖', 'ML Models', 'Hybrid Recommender\nContent-Based\nPopularity Baseline\nClassifier + Regressor'),
+          ('🌐', 'API Layer', 'Flask REST API\nGemini AI integration\nReal-time scoring\nJSON responses'),
+        ] %}
+        {% for icon, title, desc in arch %}
+        <div style="text-align:center;background:white;border-radius:var(--radius-md);padding:1.25rem;border:1px solid var(--border)">
+          <div style="font-size:2rem;margin-bottom:.6rem">{{ icon }}</div>
+          <div style="font-weight:700;color:var(--ink);margin-bottom:.5rem">{{ title }}</div>
+          {% for line in desc.split('\n') %}
+          <div style="font-size:.78rem;color:var(--muted)">{{ line }}</div>
+          {% endfor %}
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+
+    <!-- Model Comparison Table -->
+    <div class="chart-card" style="margin-bottom:2rem">
+      <div class="chart-title" style="font-size:1.1rem;margin-bottom:1.5rem">📊 Model Comparison Table</div>
+      <div style="overflow-x:auto">
+        <table class="metrics-table">
+          <thead>
+            <tr>
+              <th>Model</th>
+              <th>Type</th>
+              <th>Primary Metric</th>
+              <th>Score</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for m in models_table %}
+            <tr>
+              <td style="font-weight:600">{{ m.model }}</td>
+              <td><span class="badge badge-sky" style="font-size:.72rem">{{ m.type }}</span></td>
+              <td style="color:var(--muted);font-size:.875rem">{{ m.metric }}</td>
+              <td style="font-weight:700;color:var(--sky-deep)">{{ m.value }}</td>
+              <td>
+                <span class="status-badge status-{{ m.status }}">
+                  {% if m.status == 'production' %}✅ Production{% else %}📊 Baseline{% endif %}
+                </span>
+              </td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Metrics Cards Row -->
+    <div class="grid-3" style="margin-bottom:2rem">
+      <!-- Classification Metrics -->
+      <div class="card" style="padding:1.75rem">
+        <div style="font-family:var(--font-display);font-size:1rem;font-weight:700;color:var(--ink);margin-bottom:1.25rem;padding-bottom:.75rem;border-bottom:2px solid var(--sky-light)">
+          🌳 Classification Model
+        </div>
+        <div style="display:flex;flex-direction:column;gap:.75rem">
+          <div style="display:flex;justify-content:space-between;align-items:center">
+            <span style="font-size:.85rem;color:var(--muted)">Algorithm</span>
+            <span style="font-weight:700;color:var(--ink)">Random Forest</span>
+          </div>
+          <div style="display:flex;justify-content:space-between;align-items:center">
+            <span style="font-size:.85rem;color:var(--muted)">Target</span>
+            <span style="font-weight:600;color:var(--slate)">Recommendation Level</span>
+          </div>
+          <div style="display:flex;justify-content:space-between;align-items:center">
+            <span style="font-size:.85rem;color:var(--muted)">Accuracy</span>
+            <span class="badge badge-mint" style="font-size:.85rem">
+              {{ metrics.classification_accuracy | default('N/A') }}
+            </span>
+          </div>
+          <div style="display:flex;justify-content:space-between;align-items:center">
+            <span style="font-size:.85rem;color:var(--muted)">Estimators</span>
+            <span style="font-weight:600">200 trees</span>
+          </div>
+          <div style="display:flex;justify-content:space-between;align-items:center">
+            <span style="font-size:.85rem;color:var(--muted)">Max Depth</span>
+            <span style="font-weight:600">15</span>
+          </div>
+          <div style="display:flex;justify-content:space-between;align-items:center">
+            <span style="font-size:.85rem;color:var(--muted)">Class Weight</span>
+            <span style="font-weight:600">Balanced</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Regression Metrics -->
+      <div class="card" style="padding:1.75rem">
+        <div style="font-family:var(--font-display);font-size:1rem;font-weight:700;color:var(--ink);margin-bottom:1.25rem;padding-bottom:.75rem;border-bottom:2px solid var(--mint-mid)">
+          📈 Regression Model
+        </div>
+        <div style="display:flex;flex-direction:column;gap:.75rem">
+          <div style="display:flex;justify-content:space-between;align-items:center">
+            <span style="font-size:.85rem;color:var(--muted)">Algorithm</span>
+            <span style="font-weight:700;color:var(--ink)">Gradient Boosting</span>
+          </div>
+          <div style="display:flex;justify-content:space-between;align-items:center">
+            <span style="font-size:.85rem;color:var(--muted)">Target</span>
+            <span style="font-weight:600;color:var(--slate)">Rating Prediction</span>
+          </div>
+          <div style="display:flex;justify-content:space-between;align-items:center">
+            <span style="font-size:.85rem;color:var(--muted)">R² Score</span>
+            <span class="badge badge-mint">{{ metrics.regression_r2 | default('N/A') }}</span>
+          </div>
+          <div style="display:flex;justify-content:space-between;align-items:center">
+            <span style="font-size:.85rem;color:var(--muted)">RMSE</span>
+            <span style="font-weight:600">{{ metrics.regression_rmse | default('N/A') }}</span>
+          </div>
+          <div style="display:flex;justify-content:space-between;align-items:center">
+            <span style="font-size:.85rem;color:var(--muted)">MAE</span>
+            <span style="font-weight:600">{{ metrics.regression_mae | default('N/A') }}</span>
+          </div>
+          <div style="display:flex;justify-content:space-between;align-items:center">
+            <span style="font-size:.85rem;color:var(--muted)">Estimators</span>
+            <span style="font-weight:600">200</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Recommender Metrics -->
+      <div class="card" style="padding:1.75rem">
+        <div style="font-family:var(--font-display);font-size:1rem;font-weight:700;color:var(--ink);margin-bottom:1.25rem;padding-bottom:.75rem;border-bottom:2px solid var(--sand-mid)">
+          🎯 Hybrid Recommender
+        </div>
+        <div style="display:flex;flex-direction:column;gap:.75rem">
+          <div style="display:flex;justify-content:space-between;align-items:center">
+            <span style="font-size:.85rem;color:var(--muted)">Coverage</span>
+            <span class="badge badge-mint">100%</span>
+          </div>
+          <div style="display:flex;justify-content:space-between;align-items:center">
+            <span style="font-size:.85rem;color:var(--muted)">TF-IDF Features</span>
+            <span style="font-weight:600">5,000</span>
+          </div>
+          <div style="display:flex;justify-content:space-between;align-items:center">
+            <span style="font-size:.85rem;color:var(--muted)">N-gram Range</span>
+            <span style="font-weight:600">(1, 2)</span>
+          </div>
+          <div style="display:flex;justify-content:space-between;align-items:center">
+            <span style="font-size:.85rem;color:var(--muted)">Similarity Metric</span>
+            <span style="font-weight:600">Cosine</span>
+          </div>
+          <div style="display:flex;justify-content:space-between;align-items:center">
+            <span style="font-size:.85rem;color:var(--muted)">Clusters</span>
+            <span style="font-weight:600">6 traveler groups</span>
+          </div>
+          <div style="display:flex;justify-content:space-between;align-items:center">
+            <span style="font-size:.85rem;color:var(--muted)">Neighbors (NNN)</span>
+            <span style="font-weight:600">20</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Hybrid Score Weights -->
+    <div class="chart-card" style="margin-bottom:2rem">
+      <div class="chart-title" style="font-size:1.1rem;margin-bottom:1.5rem">⚖️ Hybrid Recommender Score Weights</div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:1rem">
+        {% set weights = [
+          ('🔗', 'Content Similarity', 30, 'var(--sky)'),
+          ('📊', 'Popularity Score', 25, 'var(--mint)'),
+          ('⭐', 'Rating Score', 20, 'var(--sand)'),
+          ('💰', 'Budget Match', 10, '#8b5cf6'),
+          ('🌸', 'Season Match', 10, '#f97316'),
+          ('🏷️', 'Category Match', 5, '#ec4899'),
+        ] %}
+        {% for icon, label, weight, color in weights %}
+        <div style="text-align:center;padding:1.25rem;background:var(--off-white);border-radius:var(--radius-md);border:1px solid var(--border)">
+          <div style="font-size:1.75rem;margin-bottom:.5rem">{{ icon }}</div>
+          <div style="font-size:.8rem;color:var(--muted);margin-bottom:.5rem">{{ label }}</div>
+          <div style="font-size:1.75rem;font-weight:800;color:{{ color }}">{{ weight }}%</div>
+          <div style="height:4px;background:var(--snow);border-radius:4px;margin-top:.75rem;overflow:hidden">
+            <div style="height:100%;width:{{ weight * 3.3 }}%;background:{{ color }};border-radius:4px"></div>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+
+    <!-- ML Pipeline -->
+    <div class="chart-card" style="margin-bottom:2rem">
+      <div class="chart-title" style="font-size:1.1rem;margin-bottom:1.5rem">🔄 ML Training Pipeline</div>
+      <div style="display:flex;flex-wrap:wrap;gap:.75rem;align-items:center;justify-content:center">
+        {% set steps = [
+          ('📥', 'Load CSV'),
+          ('🧹', 'Clean & Preprocess'),
+          ('🏗️', 'Build Catalog'),
+          ('📝', 'TF-IDF Vectorize'),
+          ('🤖', 'Train Models'),
+          ('🔧', 'Tune Params'),
+          ('📊', 'Evaluate'),
+          ('💾', 'Save Artifacts'),
+          ('🌐', 'Flask Deploy'),
+        ] %}
+        {% for icon, step in steps %}
+        <div style="display:flex;align-items:center;gap:.5rem">
+          <div style="background:white;border:1.5px solid var(--sky);border-radius:var(--radius-md);padding:.6rem 1rem;text-align:center;min-width:100px">
+            <div style="font-size:1.25rem">{{ icon }}</div>
+            <div style="font-size:.75rem;font-weight:600;color:var(--slate)">{{ step }}</div>
+          </div>
+          {% if not loop.last %}
+          <div style="color:var(--sky);font-size:1.25rem">→</div>
+          {% endif %}
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+
+    <!-- Clustering Profiles -->
+    <div class="chart-card" style="margin-bottom:2rem">
+      <div class="chart-title" style="font-size:1.1rem;margin-bottom:1.5rem">🔵 Traveler Cluster Profiles (KMeans k=6)</div>
+      <div class="grid-3">
+        {% set clusters = [
+          ('💸', 'Budget Cultural Explorers', 'Prefer cultural and historical sites. Price-sensitive, group travel, younger demographic.', 'var(--sky)'),
+          ('🏔️', 'Luxury Nature Seekers', 'High-spend visitors to premium natural scenery. Couple or solo travel, high ratings.', 'var(--mint)'),
+          ('👨‍👩‍👧', 'Family Heritage Travelers', 'Ancient towns, museums, and religious sites. Family groups, mid-budget.', 'var(--sand)'),
+          ('🧗', 'Adventure Enthusiasts', 'Sports, outdoor activities, and scenic areas. Younger adults, active lifestyle.', '#8b5cf6'),
+          ('🌆', 'Urban Experience Seekers', 'City parks, urban landmarks, food streets. Short trips, high spend per hour.', '#f97316'),
+          ('🙏', 'Spiritual & Wellness Tourists', 'Religious cultural sites, meditation, heritage. Older demographic, repeat visitors.', '#ec4899'),
+        ] %}
+        {% for icon, name, desc, color in clusters %}
+        <div style="padding:1.25rem;background:var(--off-white);border-radius:var(--radius-md);border-left:4px solid {{ color }};border:1px solid var(--border);border-left-width:4px">
+          <div style="display:flex;align-items:center;gap:.6rem;margin-bottom:.6rem">
+            <span style="font-size:1.5rem">{{ icon }}</span>
+            <span style="font-weight:700;font-size:.9rem;color:var(--ink)">{{ name }}</span>
+          </div>
+          <div style="font-size:.8rem;color:var(--muted);line-height:1.6">{{ desc }}</div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+
+    <!-- Metadata -->
+    {% if metadata %}
+    <div class="card" style="padding:1.75rem">
+      <div style="font-family:var(--font-display);font-size:1rem;font-weight:700;color:var(--ink);margin-bottom:1.25rem">
+        📋 Model Metadata
+      </div>
+      <div class="grid-2" style="gap:1rem">
+        <div>
+          <div style="font-size:.75rem;color:var(--muted);text-transform:uppercase;letter-spacing:.05em;margin-bottom:.4rem">Model Version</div>
+          <span class="badge badge-sky">v{{ metadata.model_version | default('1.0.0') }}</span>
+        </div>
+        <div>
+          <div style="font-size:.75rem;color:var(--muted);text-transform:uppercase;letter-spacing:.05em;margin-bottom:.4rem">TF-IDF Vocabulary</div>
+          <span style="font-weight:700">{{ metadata.tfidf_vocab_size | default(5000) | int }} terms</span>
+        </div>
+        <div>
+          <div style="font-size:.75rem;color:var(--muted);text-transform:uppercase;letter-spacing:.05em;margin-bottom:.4rem">Training Records</div>
+          <span style="font-weight:700">{{ metadata.n_training_records | default(100000) | int | string }}+</span>
+        </div>
+        <div>
+          <div style="font-size:.75rem;color:var(--muted);text-transform:uppercase;letter-spacing:.05em;margin-bottom:.4rem">Unique Attractions</div>
+          <span style="font-weight:700">{{ metadata.n_attractions | default(431) }}</span>
+        </div>
+      </div>
+      {% if metadata.categories %}
+      <div style="margin-top:1.25rem;padding-top:1.25rem;border-top:1px solid var(--snow)">
+        <div style="font-size:.75rem;color:var(--muted);text-transform:uppercase;letter-spacing:.05em;margin-bottom:.6rem">Supported Categories</div>
+        <div style="display:flex;flex-wrap:wrap;gap:.4rem">
+          {% for cat in metadata.categories %}
+          <span class="badge badge-snow">{{ cat }}</span>
+          {% endfor %}
+        </div>
+      </div>
+      {% endif %}
+    </div>
+    {% endif %}
+
+  </div>
+</section>
+{% endblock %}

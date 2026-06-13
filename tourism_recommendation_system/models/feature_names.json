@@ -1,0 +1,39 @@
+{
+  "clf_features": [
+    "age",
+    "ticket_price",
+    "visit_duration_hours",
+    "spend_amount",
+    "other_spend",
+    "rating",
+    "is_holiday_enc",
+    "is_group_tour_enc",
+    "cat_enc",
+    "season_enc",
+    "gender_enc",
+    "age_group_enc",
+    "atlevel_enc"
+  ],
+  "reg_features": [
+    "age",
+    "ticket_price",
+    "visit_duration_hours",
+    "spend_amount",
+    "is_holiday_enc",
+    "is_group_tour_enc",
+    "attraction_category_enc",
+    "season_enc",
+    "gender_enc",
+    "age_group_enc",
+    "attraction_level_enc",
+    "province_enc"
+  ],
+  "cluster_names": {
+    "0": "Budget Cultural Explorers",
+    "1": "Luxury Nature Seekers",
+    "2": "Family Heritage Travelers",
+    "3": "Adventure Enthusiasts",
+    "4": "Urban Experience Seekers",
+    "5": "Spiritual & Wellness Tourists"
+  }
+}
