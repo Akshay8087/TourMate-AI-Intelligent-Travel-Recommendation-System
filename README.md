@@ -103,15 +103,7 @@ China's domestic tourism generates hundreds of millions of visits annually. Trav
 ---
 
 ## 🎯 Problem Statement
-
-<div align="center">
-
-<!-- Animated problem-solution SVG -->
-<p align="center">
-  <img src="./assets/02-problem-solution-flow.svg" alt="Problem and TourMate AI solution comparison" width="780">
-</p>
-
-</div>
+<img width="1672" height="941" alt="Image" src="https://github.com/user-attachments/assets/d027c058-b57c-4452-93a3-5d08ec4271ba" />
 
 ---
 
