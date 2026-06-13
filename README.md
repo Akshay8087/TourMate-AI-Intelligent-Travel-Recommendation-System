@@ -149,7 +149,6 @@ China's domestic tourism generates hundreds of millions of visits annually. Trav
 
 ## 🔬 EDA Highlights & Key Findings
 
-### 📊 Animated EDA Charts
 
 <div align="center">
 
