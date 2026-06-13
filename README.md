@@ -154,11 +154,7 @@ China's domestic tourism generates hundreds of millions of visits annually. Trav
 <div align="center">
 
 <!-- CHART 1: Category Distribution Bar Chart -->
-<p align="center">
-  <img src="./assets/05-eda-category-distribution.svg" alt="Animated EDA category distribution chart" width="760">
-</p>
-
-<br/><br/>
+<img width="1672" height="941" alt="Image" src="https://github.com/user-attachments/assets/c563e947-a52d-4144-bd45-b01b8c36c614" />
 
 <!-- CHART 2: Rating Distribution + Satisfaction Donut -->
 <p align="center">
