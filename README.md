@@ -157,11 +157,7 @@ China's domestic tourism generates hundreds of millions of visits annually. Trav
 <img width="1672" height="941" alt="Image" src="https://github.com/user-attachments/assets/c563e947-a52d-4144-bd45-b01b8c36c614" />
 
 <!-- CHART 2: Rating Distribution + Satisfaction Donut -->
-<p align="center">
-  <img src="./assets/06-eda-rating-satisfaction.svg" alt="Rating distribution and satisfaction chart" width="760">
-</p>
-
-<br/><br/>
+<img width="1672" height="941" alt="Image" src="https://github.com/user-attachments/assets/d5553f49-fdd6-43b6-89e7-3a6203084c87" />
 
 <!-- CHART 3: Season + Province + Gender animated trio -->
 <p align="center">
