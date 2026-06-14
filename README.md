@@ -217,12 +217,10 @@ The strong relationship between satisfaction and recommendation level means sati
 ### 🧠 Key Takeaway
 
 Customer sentiment is highly positive, with most ratings clustered at the upper end of the scale. The main business opportunity is not only maintaining current satisfaction levels but also converting neutral visitors into satisfied advocates.
-<!-- CHART 3: Season + Province + Gender animated trio -->
-<p align="center">
-  <img src="./assets/07-eda-season-province-gender.svg" alt="Season province and gender EDA summary" width="760">
-</p>
 
-</div>
+----
+<!-- CHART 3: Season + Province + Gender animated trio -->
+<img width="1853" height="849" alt="Image" src="https://github.com/user-attachments/assets/baba438a-3910-4f38-8ece-02060e916876" />
 
 ### 🔑 15 Key Findings (Summary)
 
