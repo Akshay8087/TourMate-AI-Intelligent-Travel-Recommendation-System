@@ -110,14 +110,13 @@ China's domestic tourism generates hundreds of millions of visits annually. Trav
 
 ## 🎬 Live Demo Preview
 
-<div align="center">
-
-<!-- Animated app mockup SVG -->
-<p align="center">
-  <img src="./assets/03-live-demo-preview.svg" alt="TourMate AI live demo preview mockup" width="780">
-</p>
-
-</div>
+<img width="1917" height="912" alt="Image" src="https://github.com/user-attachments/assets/c05e3147-3c4f-422e-b903-5498bd91c5e5" />
+<img width="1912" height="872" alt="Image" src="https://github.com/user-attachments/assets/c541b3c1-8b7e-4ba7-97f0-d7670f817ca5" />
+<img width="1917" height="917" alt="Image" src="https://github.com/user-attachments/assets/fd38635b-1d9a-44d9-a841-f61aa76786e2" />
+<img width="1917" height="907" alt="Image" src="https://github.com/user-attachments/assets/42a41933-29a1-4389-83fc-cb7c8a54d1ba" />
+<img width="1911" height="885" alt="Image" src="https://github.com/user-attachments/assets/598ab7c4-fa90-44ac-9a3a-f5cf24998e5a" />
+<img width="1917" height="892" alt="Image" src="https://github.com/user-attachments/assets/50b118f7-8bf8-4833-be91-f87abec4071a" />
+<img width="1917" height="911" alt="Image" src="https://github.com/user-attachments/assets/aa726d75-ff6c-4ecc-9f98-bc2418e8b6b6" />
 
 ---
 
