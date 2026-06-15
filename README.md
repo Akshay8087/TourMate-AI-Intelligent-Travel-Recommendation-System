@@ -1,3 +1,4 @@
+<img width="1917" height="917" alt="Image" src="https://github.com/user-attachments/assets/f335834a-5e69-49a8-a07e-d03ef53ddbed" />
 <div align="center">
 
 <!-- ═══════════════ ANIMATED HEADER BANNER ═══════════════ -->
